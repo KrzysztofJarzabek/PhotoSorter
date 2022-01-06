@@ -1,0 +1,72 @@
+﻿<Window x:Class="PhotoSorter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PhotoSorter"
+        mc:Ignorable="d" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF" 
+       
+        fw:AcrylicWindow.AcrylicWindowStyle="NoIcon"
+        fw:AcrylicWindow.TintColor="Black"
+        fw:AcrylicWindow.TintOpacity="0.4"
+       
+        fw:AcrylicWindow.FallbackColor="Transparent"
+        
+        fw:AcrylicWindow.Enabled="True"
+        Height="600" Width="1000"  WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+
+        </Grid.RowDefinitions>
+        
+        <StackPanel>
+            <ListView>
+                <ListViewItem Padding="1" MouseLeftButtonUp="ListViewItem_MouseLeftButtonUp" >
+                    <StackPanel x:Name="newCollectionTab" Orientation="Horizontal" fw:PointerTracker.Enabled="True" >
+                        <materialDesign:PackIcon Kind="ImageAdd" Width="25" Height="25" Margin="18" />
+                        <TextBlock Text="Nowe zestawienie" VerticalAlignment="Center" FontSize="15"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Padding="1" MouseLeftButtonUp="ListViewItem_MouseLeftButtonUp_1">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ImageAlbum" Width="25" Height="25" Margin="18"/>
+                        <TextBlock Text="Biblioteka zestawień" VerticalAlignment="Center" FontSize="15" />
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Padding="1">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ChartArc" Width="25" Height="25" Margin="18"/>
+                        <TextBlock Text="Statystyki" VerticalAlignment="Center" FontSize="15"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Padding="1">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Settings" Width="25" Height="25" Margin="18"/>
+                        <TextBlock Text="Ustawienia" VerticalAlignment="Center" FontSize="15"/>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+        </StackPanel>
+
+        <Grid Grid.Column="1" Background="White"     >
+
+            <Frame x:Name="tabsDisplayFrame" NavigationUIVisibility="Hidden" fw:AcrylicWindow.TintColor="Aqua"
+        fw:AcrylicWindow.TintOpacity="0.4"/>
+            
+        </Grid>
+
+
+    </Grid>
+
+    
+    
+</Window>

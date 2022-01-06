@@ -1,0 +1,78 @@
+﻿<Window x:Class="PhotoSorter.PhotoViewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     
+        mc:Ignorable="d" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF" 
+       
+        fw:AcrylicWindow.AcrylicWindowStyle="NoIcon"
+        fw:AcrylicWindow.TintColor="Gray"
+        fw:AcrylicWindow.TintOpacity="0.08"
+        fw:AcrylicWindow.FallbackColor="Transparent"
+        fw:AcrylicWindow.Enabled="True"
+    
+       
+        Height="600" Width="800"  WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized" >
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="20"/>
+
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7" fw:PointerTracker.Enabled="True" Background="Transparent">
+            <Image x:Name="pictureBox"/>
+        </Grid>
+
+        <Grid Grid.Column="2" Grid.Row="2"  fw:PointerTracker.Enabled="True" Background="Transparent">
+            <ListViewItem x:Name="previousImageButton" VerticalAlignment="Center" HorizontalAlignment="Center" MouseLeftButtonUp="previousImageButton_MouseLeftButtonUp">
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="35" Height="35" Margin="5"/>
+            </ListViewItem>
+        </Grid>
+
+        <Grid Grid.Column="3" Grid.Row="2" fw:PointerTracker.Enabled="True" Background="Transparent">
+            <ListViewItem x:Name="removeImageButton" VerticalAlignment="Center" HorizontalAlignment="Center" MouseLeftButtonUp="removeImageButton_MouseLeftButtonUp">
+                <materialDesign:PackIcon Kind="Minus" Width="35" Height="35" Margin="5"/>
+            </ListViewItem>
+        </Grid>
+
+        <Grid Grid.Column="4" Grid.Row="2" fw:PointerTracker.Enabled="True" Background="Transparent" >
+            <ListViewItem x:Name="addImageButton" VerticalAlignment="Center" HorizontalAlignment="Center" MouseLeftButtonUp="imageAddButton_MouseLeftButtonUp">
+                <materialDesign:PackIcon Kind="add" Width="35" Height="35" Margin="5" />
+            </ListViewItem>
+        </Grid>
+
+        <Grid Grid.Column="5" Grid.Row="2" fw:PointerTracker.Enabled="True" Background="Transparent" >
+            <ListViewItem x:Name="nextImageButton" VerticalAlignment="Center" HorizontalAlignment="Center" MouseLeftButtonUp="nextImageButton_MouseLeftButtonUp">
+                <materialDesign:PackIcon Kind="ArrowRight" Width="35" Height="35" Margin="5"/>
+            </ListViewItem>
+        </Grid>
+
+        <Grid Grid.Column="6" Grid.Row="2" fw:PointerTracker.Enabled="True" Background="Transparent">
+            <ListViewItem x:Name="exitButton" VerticalAlignment="Center" HorizontalAlignment="Center" MouseLeftButtonUp="exitButton_MouseLeftButtonUp">
+                <materialDesign:PackIcon Kind="ExitToApp" Width="35" Height="35" Margin="5"/>
+            </ListViewItem>
+        </Grid>
+
+        <Grid Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="5">
+            <TextBlock x:Name="statusTextBlock" Background="Transparent" FontFamily="Segoe UI Light" TextAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Window>
