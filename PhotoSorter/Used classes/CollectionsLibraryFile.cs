@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PhotoSorter
 {
@@ -66,7 +67,6 @@ namespace PhotoSorter
         {
             List<string> CollectionsList = new List<string>();
             StreamReader streamReader = new StreamReader(path, true);
-
             while (true)
             {
                 string temporaryReadString = streamReader.ReadLine();
@@ -78,8 +78,33 @@ namespace PhotoSorter
             return CollectionsList;
         }
 
+        /// <summary>
+        /// Writes list of collections from arguments to library .txt file.
+        /// </summary>
+        /// <param name="CollectionsList"></param>
+        public static void WriteCollectionListToLibraryFile(List<string> CollectionsList)
+        {
+
+            StreamWriter fileWriter = new StreamWriter(path, false);
+            try
+            {
+                foreach (var item in CollectionsList)
+                {
+                    fileWriter.WriteLine(item);
+                }
+                fileWriter.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nie można zapisać listy kolekcji w bibliotece!", "Błąd!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public static void AddCollectionSizeToLibraryFile() { }
+
+
         //function: check if collection already exists
         //function: modify name/size
-        //function: remove collection
+
     }
 }

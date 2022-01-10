@@ -25,6 +25,16 @@ namespace PhotoSorter
             //zabezpieczenie jak wcześniejszy etap nie wyjdzie?
         }
 
+        /// <summary>
+        /// Removes folder with photos (if exists) from indicated collection.
+        /// </summary>
+        /// <param name="collectionFilePath"></param>
+        public static void DeletePhotosCollectionFolder(string collectionFilePath)
+        {
+            string photosFolderDirectory = System.IO.Directory.GetParent(collectionFilePath) + "\\" + System.IO.Path.GetFileNameWithoutExtension(collectionFilePath);
+            if (System.IO.Directory.Exists(photosFolderDirectory)) System.IO.Directory.Delete(photosFolderDirectory, true);
+        }
+
         private static void GetNamesFromCollection(string collectionPath)
         {
             StreamReader namesReader = new StreamReader(collectionPath);

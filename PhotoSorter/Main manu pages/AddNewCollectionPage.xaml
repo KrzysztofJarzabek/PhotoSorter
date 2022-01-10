@@ -6,11 +6,11 @@
       xmlns:local="clr-namespace:PhotoSorter"
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="600" 
-       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-       xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF" 
           
-      Background="Black"
-      Foreground="White"
+      Foreground="Black"
+      Background="White"
       FontFamily="Arial" FontSize="15" 
       
       Title="AddNewCollection" Cursor="Arrow">
@@ -18,11 +18,12 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="40"/>
@@ -44,11 +45,11 @@
             <TextBlock Text="Automatyczne tworzenie folderu" VerticalAlignment="Center" />
             <ToggleButton x:Name="createFolderButton" IsChecked="{x:Null}" Background="LightGreen"  Margin="30,0,0,0" Checked="createFolderButton_Checked" />
         </StackPanel>
-
-        <StackPanel x:Name="startSessionButton" Orientation="Horizontal" Grid.Column="1" Grid.Row="4" MouseDown="startSessionButton_MouseDown">
-            <TextBlock Text="Zacznij sesję" FontSize="18" TextDecorations="Underline" VerticalAlignment="Center"  LayoutTransform="{StaticResource FontStretchExpanded}" />
-            <materialDesign:PackIcon Kind="ArrowRightBoldCircleOutline" Width="25" Height="25" VerticalAlignment="Center" Margin="12,0,0,0"/>
-        </StackPanel>
-
+        <ListView  x:Name="startSessionButton" Grid.Column="1" Grid.Row="4" Padding="1"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black">
+            <StackPanel Orientation="Horizontal" MouseDown="startSessionButton_MouseDown" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <TextBlock Text="Zacznij sesję" FontSize="22"/>
+                <materialDesign:PackIcon Kind="ArrowRightBoldCircleOutline" Width="25" Height="25" Margin="20,0,0,0"/>
+            </StackPanel>
+        </ListView>
     </Grid>
 </Page>

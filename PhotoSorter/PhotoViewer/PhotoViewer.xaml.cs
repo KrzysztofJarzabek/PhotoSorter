@@ -28,6 +28,7 @@ namespace PhotoSorter
         internal string newFolderName;
         internal bool createNewFolderStatus;
         internal int currentOpenedFile;
+        internal double collectionDataSize = 0.0F;
 
         public PhotoViewer(string photosPath, string collectionName)
         {
@@ -54,21 +55,24 @@ namespace PhotoSorter
         private void imageAddButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             AddFileToSelectedFilesList();
-            CollectionFile.WriteSelectedFilesListToFile(textFilePath, selectedFilesList);
+            CollectionsFile.WriteSelectedFilesListToFile(textFilePath, selectedFilesList);
         }
 
         private void removeImageButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             RemoveFileFromSelectedFilesList();
-            CollectionFile.WriteSelectedFilesListToFile(textFilePath, selectedFilesList);
+            CollectionsFile.WriteSelectedFilesListToFile(textFilePath, selectedFilesList);
         }
 
         private void AddFileToSelectedFilesList()
         {
+          
+
             if (!selectedFilesList.Contains(filesList.GetValueOrDefault(currentOpenedFile)))
             {
                 selectedFilesList.Add(filesList.GetValueOrDefault(currentOpenedFile));
                 selectedFilesList.Sort();
+               
                 DisplayStatus("Dodano: " + System.IO.Path.GetFileName(filesList.GetValueOrDefault(currentOpenedFile)));
             }
             else DisplayStatus("Zdjęcie już istnieje na liście!");
@@ -125,17 +129,20 @@ namespace PhotoSorter
             DisplayPhoto(currentOpenedFile);
         }
 
-        private void DisplayPhoto(int numberOfFileInFolder)
+        private void DisplayPhoto(int currentOpenedFile)
         {
             BitmapImage currentImage = new BitmapImage();
             currentImage.BeginInit();
-            currentImage.UriSource = new Uri(filesList.GetValueOrDefault(numberOfFileInFolder));
+            currentImage.UriSource = new Uri(filesList.GetValueOrDefault(currentOpenedFile));
             currentImage.EndInit();
             pictureBox.Source = currentImage;
 
-            Title = System.IO.Path.GetFileName(filesList.GetValueOrDefault(numberOfFileInFolder)).ToString();
+            Title = System.IO.Path.GetFileName(filesList.GetValueOrDefault(currentOpenedFile)).ToString();
         }
 
 
+        //long length = new System.IO.FileInfo(filesList.GetValueOrDefault(currentOpenedFile)).Length;
+        //collectionDataSize = length / 1048576;
+        //        MessageBox.Show(collectionDataSize.ToString(), "Uwaga");
     }
 }

@@ -8,14 +8,14 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF" 
        
-        fw:AcrylicWindow.AcrylicWindowStyle="NoIcon"
-        fw:AcrylicWindow.TintColor="Black"
-        fw:AcrylicWindow.TintOpacity="0.4"
+        fw:AcrylicWindow.AcrylicWindowStyle="None"
+        fw:AcrylicWindow.TintColor="DeepSkyBlue"
        
-        fw:AcrylicWindow.FallbackColor="Transparent"
-        
+        fw:AcrylicWindow.TintOpacity="0.2"
+        Foreground="Black"
+             
         fw:AcrylicWindow.Enabled="True"
-        Height="600" Width="1000"  WindowStyle="None" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown">
+        Height="600" Width="1000"  WindowStyle="None" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
 
     <Grid>
@@ -30,7 +30,7 @@
         
         <StackPanel>
             <ListView>
-                <ListViewItem Padding="1" MouseLeftButtonUp="ListViewItem_MouseLeftButtonUp" >
+                <ListViewItem Padding="1" MouseLeftButtonUp="ListViewItem_MouseLeftButtonUp">
                     <StackPanel x:Name="newCollectionTab" Orientation="Horizontal" fw:PointerTracker.Enabled="True" >
                         <materialDesign:PackIcon Kind="ImageAdd" Width="25" Height="25" Margin="18" />
                         <TextBlock Text="Nowe zestawienie" VerticalAlignment="Center" FontSize="15"/>
@@ -42,26 +42,31 @@
                         <TextBlock Text="Biblioteka zestawień" VerticalAlignment="Center" FontSize="15" />
                     </StackPanel>
                 </ListViewItem>
-                <ListViewItem Padding="1">
+                <ListViewItem Padding="1" >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="ChartArc" Width="25" Height="25" Margin="18"/>
                         <TextBlock Text="Statystyki" VerticalAlignment="Center" FontSize="15"/>
                     </StackPanel>
                 </ListViewItem>
-                <ListViewItem Padding="1">
+                <ListViewItem Padding="1" >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Settings" Width="25" Height="25" Margin="18"/>
                         <TextBlock Text="Ustawienia" VerticalAlignment="Center" FontSize="15"/>
                     </StackPanel>
                 </ListViewItem>
+                <ListViewItem x:Name="exitButton" Padding="1" MouseLeftButtonUp="exitButton_MouseLeftButtonUp" >
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="LocationExit" Width="25" Height="25" Margin="18"/>
+                        <TextBlock Text="Zamknij aplikację" VerticalAlignment="Center" FontSize="15"/>
+                    </StackPanel>
+                </ListViewItem>
             </ListView>
         </StackPanel>
 
-        <Grid Grid.Column="1" Background="White"     >
+        <Grid Grid.Column="1" >
 
-            <Frame x:Name="tabsDisplayFrame" NavigationUIVisibility="Hidden" fw:AcrylicWindow.TintColor="Aqua"
-        fw:AcrylicWindow.TintOpacity="0.4"/>
-            
+            <Frame x:Name="tabsDisplayFrame" NavigationUIVisibility="Hidden" Background="White"/>
+
         </Grid>
 
 

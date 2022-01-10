@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace PhotoSorter
 {
-    public static class CollectionFile
+    public static class CollectionsFile
     {
 
         /// <summary>
@@ -29,9 +29,8 @@ namespace PhotoSorter
             }
             catch (Exception)
             {
-                MessageBox.Show("Cannot write photos list to collection file.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Nie można zapisać zdjęć w pliku danej kolekcji.", "Bład!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         /// <summary>
@@ -39,17 +38,16 @@ namespace PhotoSorter
         /// </summary>
         /// <param name="collectionFilePath"></param>
         /// <returns></returns>
-        public static List<string> GetColectionPhotosNamesList(string collectionFilePath)
+        public static List<string> GetCollectionPhotosNamesList(string collectionFilePath)
         {
             List<string> CollectionFilesNames = new List<string>();
             StreamReader streamReader = new StreamReader(collectionFilePath, true);
-
             try
             {
                 while (true)
                 {
                     string temporaryReadString = streamReader.ReadLine();
-                    if (temporaryReadString != null) CollectionFilesNames.Add(System.IO.Path.GetFileNameWithoutExtension(temporaryReadString));
+                    if (temporaryReadString != null) CollectionFilesNames.Add(System.IO.Path.GetFileName(temporaryReadString));
                     else break;
                 }
                 streamReader.Close();
@@ -60,5 +58,22 @@ namespace PhotoSorter
             }
             return CollectionFilesNames;
         }
+
+        /// <summary>
+        /// Delete collection .txt file.
+        /// </summary>
+        /// <param name="collectionFilePath"></param>
+        public static void DeleteCollectionFile(string collectionFilePath)
+        {
+            System.IO.File.Delete(collectionFilePath);
+        }
+
+
+        //dodać metodę pobierającą rozmiar plików i sumującą. Na podstawie GetColectionPhotosNamesLIst
+
+
+        //if (temporaryReadString == null ) break;
+        //          else if(!temporaryReadString.StartsWith("Size:")) CollectionFilesNames.Add(System.IO.Path.GetFileName(temporaryReadString));
+        //          //pomysł, żeby dopisywać lini
     }
 }

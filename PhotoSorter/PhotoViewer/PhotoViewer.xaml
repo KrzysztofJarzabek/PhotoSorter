@@ -9,9 +9,8 @@
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF" 
        
         fw:AcrylicWindow.AcrylicWindowStyle="NoIcon"
-        fw:AcrylicWindow.TintColor="Gray"
-        fw:AcrylicWindow.TintOpacity="0.08"
-        fw:AcrylicWindow.FallbackColor="Transparent"
+        fw:AcrylicWindow.TintColor="DeepSkyBlue"
+        fw:AcrylicWindow.TintOpacity="0.2"
         fw:AcrylicWindow.Enabled="True"
     
        

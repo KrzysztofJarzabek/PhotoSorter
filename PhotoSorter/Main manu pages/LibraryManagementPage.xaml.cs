@@ -26,35 +26,75 @@ namespace PhotoSorter
         {
             InitializeComponent();
             collectionsList = CollectionsLibraryFile.GetCollectionsList();
+            DisplayCollectionsList();
+
+        }
+
+        private void collectionsLibraryListBox_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            UpdatePhotosListBox();
+        }
+
+        private void removeCollectionButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (MessageBox.Show("Czy na pewno chcesz usunąć kolekcję?", "Uwaga!", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                string temporaryPathString = GetPathFromSelectedCollection();
+                if (temporaryPathString != null)
+                {
+                    SelectedPhotosFolder.DeletePhotosCollectionFolder(temporaryPathString);
+                    CollectionsFile.DeleteCollectionFile(temporaryPathString);
+
+                    collectionsList.Remove(temporaryPathString);
+                    CollectionsLibraryFile.WriteCollectionListToLibraryFile(collectionsList);
+
+                    DisplayCollectionsList();
+                    UpdatePhotosListBox();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Cleares library list and displays current collections list.
+        /// </summary>
+        private void DisplayCollectionsList()
+        {
+            
+            collectionsLibraryListBox.Items.Clear();
             foreach (var item in collectionsList)
             {
                 collectionsLibraryListBox.Items.Add(System.IO.Path.GetFileNameWithoutExtension(item));
+               
             }
+        }
 
+        /// <summary>
+        /// Cleares and updates collectionPhotoListBox.
+        /// </summary>
+        private void UpdatePhotosListBox()
+        {
+            collectionPhotoListBox.ItemsSource = null;
+            string temporaryPathString = GetPathFromSelectedCollection();
+            if (temporaryPathString != null)
+                collectionPhotoListBox.ItemsSource = CollectionsFile.GetCollectionPhotosNamesList(temporaryPathString);
         }
 
         /// <summary>
         /// Gets path to collection .txt file based on selected collection name.
         /// </summary>
         /// <returns></returns>
-        private string getPathFromCollectionsNameSelected()
+        private string GetPathFromSelectedCollection()
         {
-            foreach (var item in collectionsList)
+            if (collectionsLibraryListBox.SelectedItem != null)
             {
-                if (System.IO.Path.GetFileNameWithoutExtension(item) == collectionsLibraryListBox.SelectedItem.ToString()) return item;
+                foreach (var item in collectionsList)
+                {
+                    if (System.IO.Path.GetFileNameWithoutExtension(item) == collectionsLibraryListBox.SelectedItem.ToString()) return item;
+                }
             }
             return null;
         }
 
-
-        /// <summary>
-        /// Triggers selected photos files to display in collectionPhotoListBox.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void collectionsLibraryListBox_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            collectionPhotoListBox.ItemsSource = CollectionFile.GetColectionPhotosNamesList(getPathFromCollectionsNameSelected());
-        }
     }
+
 }

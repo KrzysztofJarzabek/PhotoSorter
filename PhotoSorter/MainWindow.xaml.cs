@@ -36,16 +36,19 @@ namespace PhotoSorter
         private void ListViewItem_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             tabsDisplayFrame.Content = new AddNewCollection();
-
         }
 
         private void ListViewItem_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
         {
             tabsDisplayFrame.Content = new LibraryManagement();
-
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        private void exitButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Close();
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
         }
