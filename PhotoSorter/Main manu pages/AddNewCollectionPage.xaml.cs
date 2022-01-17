@@ -26,7 +26,6 @@ namespace PhotoSorter
         public AddNewCollection()
         {
             InitializeComponent();
-
         }
 
         private void createFolderButton_Checked(object sender, RoutedEventArgs e)
@@ -40,7 +39,6 @@ namespace PhotoSorter
             CollectionsLibraryFile.AddCollectionToLibraryFile(mainFolderLocalizationTextBox.Text + "\\" + collectionNameTextBox.Text + ".txt");
 
             photoViewerWindow.Show();
-            
         }
 
         private void collectionNameTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -51,25 +49,7 @@ namespace PhotoSorter
         private void mainFolderLocalizationTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             mainFolderLocalizationTextBox.Clear();
-            mainFolderLocalizationTextBox.Text = ChooseFileDirectory();
+            mainFolderLocalizationTextBox.Text = OpenFolderDialog.ChooseFileDirectory();
         }
-
-        private string ChooseFileDirectory()
-        {
-            try
-            {
-                OpenFileDialog mainDirectory = new OpenFileDialog();
-                mainDirectory.ShowDialog();
-
-                return System.IO.Path.GetDirectoryName(mainDirectory.FileName).ToString();
-            }
-            catch (Exception)
-            {
-                //dodać obsługę wyjątków
-                return null;
-            }
-        }
-
-       
     }
 }

@@ -15,7 +15,7 @@
         Foreground="Black"
              
         fw:AcrylicWindow.Enabled="True"
-        Height="600" Width="1000"  WindowStyle="None" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Height="600" Width="1000"  WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
 
     <Grid>

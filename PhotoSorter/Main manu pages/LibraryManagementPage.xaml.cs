@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +27,7 @@ namespace PhotoSorter
         public LibraryManagement()
         {
             InitializeComponent();
-            collectionsList = CollectionsLibraryFile.GetCollectionsList();
+            //collectionsList = CollectionsLibraryFile.GetCollectionsList();
             DisplayCollectionsList();
 
         }
@@ -59,12 +61,11 @@ namespace PhotoSorter
         /// </summary>
         private void DisplayCollectionsList()
         {
-            
             collectionsLibraryListBox.Items.Clear();
+            collectionsList = CollectionsLibraryFile.GetCollectionsList();
             foreach (var item in collectionsList)
             {
                 collectionsLibraryListBox.Items.Add(System.IO.Path.GetFileNameWithoutExtension(item));
-               
             }
         }
 
@@ -74,9 +75,7 @@ namespace PhotoSorter
         private void UpdatePhotosListBox()
         {
             collectionPhotoListBox.ItemsSource = null;
-            string temporaryPathString = GetPathFromSelectedCollection();
-            if (temporaryPathString != null)
-                collectionPhotoListBox.ItemsSource = CollectionsFile.GetCollectionPhotosNamesList(temporaryPathString);
+            collectionPhotoListBox.ItemsSource = CollectionsFile.GetCollectionPhotosNamesList(GetPathFromSelectedCollection());
         }
 
         /// <summary>
@@ -85,15 +84,50 @@ namespace PhotoSorter
         /// <returns></returns>
         private string GetPathFromSelectedCollection()
         {
-            if (collectionsLibraryListBox.SelectedItem != null)
+            if (collectionsLibraryListBox.SelectedItem == null || collectionsLibraryListBox.SelectedItem.ToString() == "") return null;
+            foreach (var item in collectionsList)
             {
-                foreach (var item in collectionsList)
-                {
-                    if (System.IO.Path.GetFileNameWithoutExtension(item) == collectionsLibraryListBox.SelectedItem.ToString()) return item;
-                }
+                if (System.IO.Path.GetFileNameWithoutExtension(item) == collectionsLibraryListBox.SelectedItem.ToString()) return item;
             }
             return null;
         }
+
+        private void AddExistingCollection_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            string folderToAdd = OpenFolderDialog.ChooseFileDirectory();
+            if (CollectionsLibraryFile.CheckIfCollectionAlreadySaved(folderToAdd + ".txt")) return;
+
+            string textFilePath = System.IO.Directory.GetParent(folderToAdd).ToString() + "\\" + System.IO.Path.GetFileName(folderToAdd) + ".txt";
+            CollectionsLibraryFile.AddCollectionToLibraryFile(textFilePath);
+            CollectionsFile.WriteSelectedFilesListToFile(textFilePath, GetPhotosList(folderToAdd));
+            DisplayCollectionsList();
+            UpdatePhotosListBox();
+        }
+
+        private List<string> GetPhotosList(string photosDirectoryPath)
+        {
+            List<string> photosList = new List<string>();
+            try
+            {
+                //można dodać opcje wyboru typu rozszerzenia
+                int i = 1;
+                List<string> temporaryList = Directory.GetFiles(photosDirectoryPath.ToString(), "*" + ".jpg").ToList();
+
+                foreach (var item in temporaryList)
+                {
+                    photosList.Add(item);
+                    i++;
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Wrong directory!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            return photosList;
+        }
+
+        //test
 
     }
 

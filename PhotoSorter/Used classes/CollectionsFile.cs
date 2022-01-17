@@ -40,6 +40,8 @@ namespace PhotoSorter
         /// <returns></returns>
         public static List<string> GetCollectionPhotosNamesList(string collectionFilePath)
         {
+            if (collectionFilePath == null || collectionFilePath == "") return null;
+
             List<string> CollectionFilesNames = new List<string>();
             StreamReader streamReader = new StreamReader(collectionFilePath, true);
             try

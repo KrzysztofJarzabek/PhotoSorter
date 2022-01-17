@@ -16,6 +16,11 @@ namespace PhotoSorter
         internal static string fileSourceName;
         internal static string fileDestinationName;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="textFilePath"></param>
+        /// <param name="newFolderName"></param>
         public static void CreateSelectedPhotosFolder(string textFilePath, string newFolderName)
         {
             GetNamesFromCollection(textFilePath);

@@ -23,7 +23,7 @@ namespace PhotoSorter
     {
         public Dictionary<int, string> filesList = new Dictionary<int, string>();
         public List<string> selectedFilesList = new List<string>();
-        internal string directoryPath;
+               internal string directoryPath;
         internal string textFilePath;
         internal string newFolderName;
         internal bool createNewFolderStatus;
@@ -42,7 +42,6 @@ namespace PhotoSorter
 
             FindFilesInDirectory(ref filesList);
             DisplayPhoto(currentOpenedFile);
-
         }
 
 
@@ -66,13 +65,11 @@ namespace PhotoSorter
 
         private void AddFileToSelectedFilesList()
         {
-          
-
             if (!selectedFilesList.Contains(filesList.GetValueOrDefault(currentOpenedFile)))
             {
                 selectedFilesList.Add(filesList.GetValueOrDefault(currentOpenedFile));
                 selectedFilesList.Sort();
-               
+
                 DisplayStatus("Dodano: " + System.IO.Path.GetFileName(filesList.GetValueOrDefault(currentOpenedFile)));
             }
             else DisplayStatus("Zdjęcie już istnieje na liście!");
@@ -102,7 +99,6 @@ namespace PhotoSorter
                     filesList.Add(i, item);
                     i++;
                 }
-
                 DisplayStatus("Folder załadowano poprawnie!");
             }
             catch (Exception)

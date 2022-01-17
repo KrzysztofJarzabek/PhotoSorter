@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="700"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     
-  FontFamily="Arial" FontSize="15" 
+       FontFamily="Arial" FontSize="15" 
        
       Background="White"
      
@@ -29,9 +29,11 @@
                 <TextBlock Text="Kolekcje: " VerticalAlignment="Center" FontSize="15"/>
             </StackPanel>
 
+
+
             <ListBox x:Name="collectionsLibraryListBox" Width="260" Height="200" Foreground="Black" MouseLeftButtonUp="collectionsLibraryListBox_MouseLeftButtonUp" />
 
-            <ListViewItem Padding="1" Margin="0,10,0,0">
+            <ListViewItem x:Name="AddExistingCollection" Padding="1" Margin="0,10,0,0" MouseLeftButtonUp="AddExistingCollection_MouseLeftButtonUp">
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="AddNetwork" Width="25" Height="25" Margin="18"/>
                     <TextBlock Text="Dodaj istniejący plik kolekcji" VerticalAlignment="Center" FontSize="15"/>
@@ -43,9 +45,13 @@
                     <TextBlock Text="Usuń kolekcję" VerticalAlignment="Center" FontSize="15"/>
                 </StackPanel>
             </ListViewItem>
-
+            
         </ListView>
-
+        <Rectangle Grid.Column="0" Width="1" Height="600" Fill="Black" HorizontalAlignment="Right" />
+        
+        
+        
+        
         <ListView Grid.Column="1" Foreground="Black"  >
 
             <StackPanel Orientation="Horizontal" Height="47" >
@@ -67,7 +73,7 @@
                     <TextBlock Text="Usuń folder ze kolekcji" VerticalAlignment="Center" FontSize="15"/>
                 </StackPanel>
             </ListViewItem>
-            
+
         </ListView>
 
         <!--<StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Top">

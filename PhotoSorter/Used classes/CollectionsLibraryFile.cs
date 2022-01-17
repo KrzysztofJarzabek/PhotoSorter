@@ -12,6 +12,10 @@ namespace PhotoSorter
     {
         static string path = @"CollectionsLibrary.txt";
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="collectionName"></param>
         public static void AddCollectionToLibraryFile(string collectionName)
         {
             //string completeFilePath = "@" + collectionName + ".txt";
@@ -30,6 +34,67 @@ namespace PhotoSorter
                 Console.WriteLine("Program zostanie zakończony bez zmian w pliku");
                 Console.ReadKey();
             }
+        }
+
+
+
+        /// <summary>
+        /// Gets List of lines from CollectionsLibrary .txt file.
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetCollectionsList()
+        {
+            List<string> collectionsList = new List<string>();
+            StreamReader streamReader = new StreamReader(path, true);
+            while (true)
+            {
+                string temporaryReadString = streamReader.ReadLine();
+                if (temporaryReadString != null) collectionsList.Add(temporaryReadString);
+                else break;
+            }
+            streamReader.Close();
+
+            return collectionsList;
+        }
+
+        /// <summary>
+        /// Writes list of collections from arguments to library .txt file.
+        /// </summary>
+        /// <param name="CollectionsList"></param>
+        public static void WriteCollectionListToLibraryFile(List<string> collectionsList)
+        {
+            StreamWriter fileWriter = new StreamWriter(path, false);
+            try
+            {
+                foreach (var item in collectionsList)
+                {
+                    fileWriter.WriteLine(item);
+                }
+                fileWriter.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nie można zapisać listy kolekcji w bibliotece!", "Błąd!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        /// <summary>
+        /// Returns true if collection already exists in main collections ".txt" file.
+        /// </summary>
+        /// <param name="collectionName"></param>
+        /// <returns></returns>
+        public static bool CheckIfCollectionAlreadySaved(string collectionName)
+        {
+            List<string> collectionsList = GetCollectionsList();
+            foreach (var item in collectionsList)
+            {
+                if (item.ToString() == collectionName)
+                {
+                    MessageBox.Show("Kolekcja już istnieje w bazie!", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -58,51 +123,6 @@ namespace PhotoSorter
             }
 
         }
-
-        /// <summary>
-        /// Gets List of lines from CollectionsLibrary .txt file.
-        /// </summary>
-        /// <returns></returns>
-        public static List<string> GetCollectionsList()
-        {
-            List<string> CollectionsList = new List<string>();
-            StreamReader streamReader = new StreamReader(path, true);
-            while (true)
-            {
-                string temporaryReadString = streamReader.ReadLine();
-                if (temporaryReadString != null) CollectionsList.Add(temporaryReadString);
-                else break;
-            }
-            streamReader.Close();
-
-            return CollectionsList;
-        }
-
-        /// <summary>
-        /// Writes list of collections from arguments to library .txt file.
-        /// </summary>
-        /// <param name="CollectionsList"></param>
-        public static void WriteCollectionListToLibraryFile(List<string> CollectionsList)
-        {
-
-            StreamWriter fileWriter = new StreamWriter(path, false);
-            try
-            {
-                foreach (var item in CollectionsList)
-                {
-                    fileWriter.WriteLine(item);
-                }
-                fileWriter.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Nie można zapisać listy kolekcji w bibliotece!", "Błąd!", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        public static void AddCollectionSizeToLibraryFile() { }
-
-
         //function: check if collection already exists
         //function: modify name/size
 
