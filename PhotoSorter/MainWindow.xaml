@@ -23,10 +23,7 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-
-
-        </Grid.RowDefinitions>
+        
         
         <StackPanel>
             <ListView>
@@ -60,13 +57,12 @@
                         <TextBlock Text="Zamknij aplikację" VerticalAlignment="Center" FontSize="15"/>
                     </StackPanel>
                 </ListViewItem>
+               
             </ListView>
         </StackPanel>
 
         <Grid Grid.Column="1" >
-
-            <Frame x:Name="tabsDisplayFrame" NavigationUIVisibility="Hidden" Background="White"/>
-
+            <Frame x:Name="tabsDisplayFrame" Height="600" VerticalAlignment="Top" NavigationUIVisibility="Hidden"/>
         </Grid>
 
 

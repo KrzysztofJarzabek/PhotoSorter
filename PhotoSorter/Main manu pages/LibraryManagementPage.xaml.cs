@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace PhotoSorter
 {
@@ -52,6 +53,8 @@ namespace PhotoSorter
 
                     DisplayCollectionsList();
                     UpdatePhotosListBox();
+
+                    DisplayStatusInfo("Pomyślnie usunięto kolekcję.");
                 }
             }
         }
@@ -102,6 +105,23 @@ namespace PhotoSorter
             CollectionsFile.WriteSelectedFilesListToFile(textFilePath, GetPhotosList(folderToAdd));
             DisplayCollectionsList();
             UpdatePhotosListBox();
+
+            DisplayStatusInfo("Pomyślnie dodano kolekcję.");
+        }
+
+        private void DisplayStatusInfo(string message)
+        {
+            DispatcherTimer messageTimer = new DispatcherTimer();
+            messageTimer.Interval = TimeSpan.FromSeconds(2);
+            informationTextBlock.Text = message;
+
+            messageTimer.Tick += (s, en) =>
+            {
+                informationTextBlock.Text = "";
+                messageTimer.Stop();
+            };
+            messageTimer.Start();
+
         }
 
         private List<string> GetPhotosList(string photosDirectoryPath)
@@ -109,16 +129,11 @@ namespace PhotoSorter
             List<string> photosList = new List<string>();
             try
             {
-                //można dodać opcje wyboru typu rozszerzenia
-                int i = 1;
                 List<string> temporaryList = Directory.GetFiles(photosDirectoryPath.ToString(), "*" + ".jpg").ToList();
-
                 foreach (var item in temporaryList)
                 {
                     photosList.Add(item);
-                    i++;
                 }
-
             }
             catch (Exception)
             {

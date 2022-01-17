@@ -5,23 +5,30 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PhotoSorter"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="700"
+      d:DesignHeight="600" d:DesignWidth="700"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     
-       FontFamily="Arial" FontSize="15" 
+      FontFamily="Arial" FontSize="15" 
        
-      Background="White"
-     
-      
       Title="LibraryManagement" Cursor="Arrow">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="280" />
             <ColumnDefinition Width="280"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="550"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.Column="0" Background="White" />
+        <Border Grid.Row="0" Grid.Column="1" Background="White" />
+        <Border Grid.Row="0" Grid.Column="2" Background="White" />
+        <Border Grid.Row="1" Grid.Column="0" Background="Transparent" />
+        <Border Grid.Row="1" Grid.Column="1" Background="Transparent" />
+        <Border Grid.Row="1" Grid.Column="2" Background="Transparent" />
 
         <ListView Foreground="Black" >
             <StackPanel Orientation="Horizontal" Height="47">
@@ -45,13 +52,14 @@
                     <TextBlock Text="Usuń kolekcję" VerticalAlignment="Center" FontSize="15"/>
                 </StackPanel>
             </ListViewItem>
-            
         </ListView>
-        <Rectangle Grid.Column="0" Width="1" Height="600" Fill="Black" HorizontalAlignment="Right" />
-        
-        
-        
-        
+
+
+        <Rectangle Grid.Column="0" Width="1" Height="550" Fill="Black" HorizontalAlignment="Right" />
+
+
+
+
         <ListView Grid.Column="1" Foreground="Black"  >
 
             <StackPanel Orientation="Horizontal" Height="47" >
@@ -76,6 +84,7 @@
 
         </ListView>
 
+
         <!--<StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Top">
             <materialDesign:PackIcon Kind="ChartArc" Width="25" Height="25" Margin="18"/>
             <TextBlock Text="Ilość zdjęć: " VerticalAlignment="Center" FontSize="15"/>
@@ -83,5 +92,8 @@
             <TextBlock Text="Rozmiar kolekcji: " VerticalAlignment="Center" FontSize="15"/>
             <TextBlock x:Name="sizeOfPhotosCollection" Height="50"/>
         </StackPanel>-->
+
+        <TextBlock Grid.Row="1" x:Name="informationTextBlock" Width="560" Foreground="White" FontFamily="Segoe UI Light" FontSize="15" VerticalAlignment="Center"/>
+
     </Grid>
 </Page>
