@@ -10,18 +10,20 @@ namespace PhotoSorter
 {
     public static class OpenFolderDialog
     {
+
         /// <summary>
         /// Opens a file dialog and returns folder of indicated file.
         /// </summary>
         /// <returns></returns>
         public static string ChooseFileDirectory() //utworzyć wspólną metodę/klasę
         {
+            object fileName;
+            OpenFileDialog mainDirectory = new OpenFileDialog();
+            mainDirectory.ShowDialog();
             try
             {
-                OpenFileDialog mainDirectory = new OpenFileDialog();
-                mainDirectory.ShowDialog();
-
-                return System.IO.Path.GetDirectoryName(mainDirectory.FileName).ToString();
+                fileName = mainDirectory.FileName;
+                return System.IO.Path.GetDirectoryName(fileName.ToString());
             }
             catch (Exception)
             {

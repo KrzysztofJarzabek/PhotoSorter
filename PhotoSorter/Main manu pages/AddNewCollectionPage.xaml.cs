@@ -49,7 +49,10 @@ namespace PhotoSorter
         private void mainFolderLocalizationTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             mainFolderLocalizationTextBox.Clear();
-            mainFolderLocalizationTextBox.Text = OpenFolderDialog.ChooseFileDirectory();
+           
+            string mainFolderLocalization = OpenFolderDialog.ChooseFileDirectory();
+            if (mainFolderLocalization == null) return;
+            mainFolderLocalizationTextBox.Text = mainFolderLocalization;
         }
     }
 }
