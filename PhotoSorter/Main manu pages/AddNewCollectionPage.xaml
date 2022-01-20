@@ -5,12 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PhotoSorter"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="600" 
+      d:DesignHeight="600" d:DesignWidth="700" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF" 
           
       Foreground="Black"
-      Background="White"
+    
       FontFamily="Arial" FontSize="15" 
       
       Title="AddNewCollection" Cursor="Arrow">
@@ -26,10 +26,29 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="80"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition  Height="*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition  Height="50"/>
         </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.Column="0" Background="White" />
+        <Border Grid.Row="0" Grid.Column="1" Background="White" />
+        <Border Grid.Row="0" Grid.Column="2" Background="White" />
+        <Border Grid.Row="1" Grid.Column="0" Background="White" />
+        <Border Grid.Row="1" Grid.Column="1" Background="White" />
+        <Border Grid.Row="1" Grid.Column="2" Background="White" />
+        <Border Grid.Row="2" Grid.Column="0" Background="White" />
+        <Border Grid.Row="2" Grid.Column="1" Background="White" />
+        <Border Grid.Row="2" Grid.Column="2" Background="White" />
+        <Border Grid.Row="3" Grid.Column="0" Background="White" />
+        <Border Grid.Row="3" Grid.Column="1" Background="White" />
+        <Border Grid.Row="3" Grid.Column="2" Background="White" />
+        <Border Grid.Row="4" Grid.Column="0" Background="White" />
+        <Border Grid.Row="4" Grid.Column="1" Background="White" />
+        <Border Grid.Row="4" Grid.Column="2" Background="White" />
+        <Border Grid.Row="5" Grid.Column="0" Background="Transparent" />
+        <Border Grid.Row="5" Grid.Column="1" Background="Transparent" />
+        <Border Grid.Row="5" Grid.Column="2" Background="Transparent" />
+
 
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
             <TextBlock Text="Nazwa kolekcji:"  />
@@ -45,11 +64,13 @@
             <TextBlock Text="Automatyczne tworzenie folderu" VerticalAlignment="Center" />
             <ToggleButton x:Name="createFolderButton" IsChecked="{x:Null}" Background="LightGreen"  Margin="30,0,0,0" Checked="createFolderButton_Checked" />
         </StackPanel>
-        <ListView  x:Name="startSessionButton" Grid.Column="1" Grid.Row="4" Padding="1"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black">
-            <StackPanel Orientation="Horizontal" MouseDown="startSessionButton_MouseDown" HorizontalAlignment="Center" VerticalAlignment="Center" >
+        <ListViewItem  x:Name="startSessionButton" Grid.Column="1" Grid.Row="4" Padding="10" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" MouseLeftButtonUp="startSessionButton_MouseLeftButtonUp">
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Zacznij sesję" FontSize="22"/>
                 <materialDesign:PackIcon Kind="ArrowRightBoldCircleOutline" Width="25" Height="25" Margin="20,0,0,0"/>
             </StackPanel>
-        </ListView>
+        </ListViewItem>
+
+       
     </Grid>
 </Page>
