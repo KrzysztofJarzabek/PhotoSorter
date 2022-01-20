@@ -98,8 +98,8 @@ namespace PhotoSorter
         private void AddExistingCollection_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             string folderToAdd = OpenFolderDialog.ChooseFileDirectory();
-           
-            if (folderToAdd==null) return;
+
+            if (folderToAdd == null) return;
             else if (CollectionsLibraryFile.CheckIfCollectionAlreadySaved(folderToAdd + ".txt")) return;
 
             string textFilePath = System.IO.Directory.GetParent(folderToAdd).ToString() + "\\" + System.IO.Path.GetFileName(folderToAdd) + ".txt";
@@ -123,7 +123,6 @@ namespace PhotoSorter
                 messageTimer.Stop();
             };
             messageTimer.Start();
-
         }
 
         private List<string> GetPhotosList(string photosDirectoryPath)
@@ -144,7 +143,29 @@ namespace PhotoSorter
             return photosList;
         }
 
-        //test
+        private void createCollectionPhotosFolder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            string temporaryPathString = GetPathFromSelectedCollection();
+            bool folderExists = !System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(temporaryPathString) + "\\" + System.IO.Path.GetFileNameWithoutExtension(temporaryPathString));
+            if (folderExists)
+            {
+                SelectedPhotosFolder.CreateSelectedPhotosFolder(temporaryPathString, System.IO.Path.GetFileNameWithoutExtension(temporaryPathString));
+                DisplayStatusInfo("Utworzono folder ze zdjęciami.");
+            }
+            else DisplayStatusInfo("Folder ze zdjęciami kolekcji już istnieje.");
+        }
+
+        private void deleteCollectionPhotosFolder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            string temporaryPathString = GetPathFromSelectedCollection();
+            bool folderExists = System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(temporaryPathString) + "\\" + System.IO.Path.GetFileNameWithoutExtension(temporaryPathString));
+            if (folderExists && temporaryPathString != null)
+            {
+                SelectedPhotosFolder.DeletePhotosCollectionFolder(temporaryPathString);
+                DisplayStatusInfo("Usunięto folder ze zdjęciami.");
+            }
+            else DisplayStatusInfo("Folder ze zdjęciami nie istnieje.");
+        }
 
     }
 

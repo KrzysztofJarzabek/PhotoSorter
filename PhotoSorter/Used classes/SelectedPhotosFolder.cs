@@ -17,7 +17,7 @@ namespace PhotoSorter
         internal static string fileDestinationName;
 
         /// <summary>
-        /// 
+        /// Creates folder with copy of collection photos. TextFilePath is the complete path to collection .txt file.
         /// </summary>
         /// <param name="textFilePath"></param>
         /// <param name="newFolderName"></param>
