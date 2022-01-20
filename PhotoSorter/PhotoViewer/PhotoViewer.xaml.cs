@@ -42,8 +42,8 @@ namespace PhotoSorter
         private void exitButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             CollectionsFile.WriteSelectedFilesListToFile(textFilePath, selectedFilesList);
-            if (createNewFolderStatus) SelectedPhotosFolder.CreateSelectedPhotosFolder(textFilePath, newFolderName);
             Close();
+            if (createNewFolderStatus) SelectedPhotosFolder.CreateSelectedPhotosFolder(textFilePath, newFolderName);
         }
 
         private void imageAddButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

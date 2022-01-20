@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace PhotoSorter
@@ -72,7 +69,6 @@ namespace PhotoSorter
 
 
         //dodać metodę pobierającą rozmiar plików i sumującą. Na podstawie GetColectionPhotosNamesLIst
-
 
         //if (temporaryReadString == null ) break;
         //          else if(!temporaryReadString.StartsWith("Size:")) CollectionFilesNames.Add(System.IO.Path.GetFileName(temporaryReadString));

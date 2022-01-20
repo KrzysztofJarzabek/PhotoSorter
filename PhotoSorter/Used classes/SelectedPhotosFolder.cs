@@ -43,6 +43,8 @@ namespace PhotoSorter
         private static void GetNamesFromCollection(string collectionPath)
         {
             StreamReader namesReader = new StreamReader(collectionPath);
+            selectedFilesList.Clear();
+
             do
             {
                 string temporaryString = namesReader.ReadLine();
@@ -83,8 +85,6 @@ namespace PhotoSorter
                     MessageBox.Show("Nie można skopiować plików!", "Uwaga!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-
         }
-
     }
 }
