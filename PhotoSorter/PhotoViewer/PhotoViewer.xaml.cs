@@ -3,16 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace PhotoSorter
 {
@@ -23,7 +17,7 @@ namespace PhotoSorter
     {
         public Dictionary<int, string> filesList = new Dictionary<int, string>();
         public List<string> selectedFilesList = new List<string>();
-               internal string directoryPath;
+        internal string directoryPath;
         internal string textFilePath;
         internal string newFolderName;
         internal bool createNewFolderStatus;
@@ -110,8 +104,16 @@ namespace PhotoSorter
 
         private void DisplayStatus(string messageText)
         {
-            statusTextBlock.Text = string.Empty;
-            statusTextBlock.Text = messageText;
+            DispatcherTimer messageTimer = new DispatcherTimer();
+            messageTimer.Interval = TimeSpan.FromSeconds(2);
+            statusTextBlock.Text = messageText; ;
+
+            messageTimer.Tick += (s, en) =>
+            {
+                statusTextBlock.Text = string.Empty;
+                messageTimer.Stop();
+            };
+            messageTimer.Start();
         }
 
         private void nextImageButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
