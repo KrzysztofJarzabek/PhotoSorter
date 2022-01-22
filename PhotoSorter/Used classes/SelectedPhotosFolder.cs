@@ -10,7 +10,7 @@ namespace PhotoSorter
 {
     public static class SelectedPhotosFolder
     {
-        internal static List<string> selectedFilesList = new List<string>();
+
         internal static string directoryFolder;
         internal static string newDirectoryFolder;
         internal static string fileSourceName;
@@ -23,7 +23,6 @@ namespace PhotoSorter
         /// <param name="newFolderName"></param>
         public static void CreateSelectedPhotosFolder(string textFilePath, string newFolderName)
         {
-            GetNamesFromCollection(textFilePath);
             CreateNewFolder(textFilePath, newFolderName);
             CopyPhotosToNewFolder(textFilePath);
 
@@ -40,10 +39,15 @@ namespace PhotoSorter
             if (System.IO.Directory.Exists(photosFolderDirectory)) System.IO.Directory.Delete(photosFolderDirectory, true);
         }
 
-        private static void GetNamesFromCollection(string collectionPath)
+        /// <summary>
+        /// Gets photos names from collection .txt file from path txtFilePath.
+        /// </summary>
+        /// <param name="textFilePath"></param>
+        /// <returns></returns>
+        public static List<string> GetPhotosNamesFromCollection(string textFilePath)
         {
-            StreamReader namesReader = new StreamReader(collectionPath);
-            selectedFilesList.Clear();
+            StreamReader namesReader = new(textFilePath);
+            List<string> selectedFilesList = new();
 
             do
             {
@@ -54,6 +58,8 @@ namespace PhotoSorter
                 selectedFilesList.Add(temporaryString);
             } while (true);
             namesReader.Close();
+
+            return selectedFilesList;
         }
 
         private static void CreateNewFolder(string textFilePath, string newFolderName)
@@ -72,6 +78,9 @@ namespace PhotoSorter
 
         private static void CopyPhotosToNewFolder(string textFilePath)
         {
+            List<string> selectedFilesList = new();
+            selectedFilesList = GetPhotosNamesFromCollection(textFilePath);
+
             foreach (var item in selectedFilesList)
             {
                 fileSourceName = directoryFolder + "\\" + item.ToString();
