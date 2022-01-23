@@ -36,8 +36,6 @@
                 <TextBlock Text="Kolekcje: " VerticalAlignment="Center" FontSize="15"/>
             </StackPanel>
 
-
-
             <ListBox x:Name="collectionsLibraryListBox" Width="260" Height="200" Foreground="Black" MouseLeftButtonUp="collectionsLibraryListBox_MouseLeftButtonUp" />
 
             <ListViewItem x:Name="AddExistingCollection" Padding="1" Margin="0,10,0,0" MouseLeftButtonUp="AddExistingCollection_MouseLeftButtonUp">
@@ -54,11 +52,7 @@
             </ListViewItem>
         </ListView>
 
-
         <Rectangle Grid.Column="0" Width="1" Height="550" Fill="Black" HorizontalAlignment="Right" />
-
-
-
 
         <ListView Grid.Column="1" Foreground="Black"  >
 
@@ -83,19 +77,18 @@
             </ListViewItem>
 
         </ListView>
-
+        <Rectangle Grid.Column="1" Width="1" Height="550" Fill="Black" HorizontalAlignment="Right" />
 
         <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Top">
             <materialDesign:PackIcon Kind="ChartArc" Width="25" Height="25" Margin="18"/>
-            <TextBlock Text="Ilość zdjęć: " VerticalAlignment="Center" FontSize="15"/>
-            <TextBlock x:Name="numberOfPhotosInCollection" Height="50"/>
-            <TextBlock Text="Rozmiar kolekcji: " VerticalAlignment="Center" FontSize="15"/>
-            <TextBlock x:Name="sizeOfPhotosCollection" Height="50"/>
-            <TextBlock Text="Folder ze zdjęciami: " VerticalAlignment="Center" FontSize="15"/>
-            <TextBlock x:Name="isFolderPresent" Height="50"/>
+            <TextBlock Text="Ilość zdjęć: " VerticalAlignment="Center" FontSize="15" Margin="10,0,0,0"/>
+            <TextBlock x:Name="numberOfPhotosInCollection" Height="50" Margin="10,0,0,0"/>
+            <TextBlock Text="Rozmiar kolekcji: " VerticalAlignment="Center" FontSize="15" Margin="10,0,0,0"/>
+            <TextBlock x:Name="sizeOfPhotosCollection" Height="50" Margin="10,0,0,0"/>
+            <TextBlock Text="Folder kolekcji: " VerticalAlignment="Center" FontSize="15" Margin="10,0,0,0"/>
+            <TextBlock x:Name="isFolderPresent" Height="50" Margin="10,0,0,0"/>
         </StackPanel>
 
         <TextBlock Grid.Row="1" x:Name="informationTextBlock" Width="560" Foreground="White" FontFamily="Segoe UI Light" FontSize="15" VerticalAlignment="Center"/>
-
     </Grid>
 </Page>
