@@ -16,9 +16,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />-->
 
             </ResourceDictionary.MergedDictionaries>
-            <ScaleTransform x:Key="FontStretchCondensed" ScaleX="0.8" />
-            <ScaleTransform x:Key="FontStretchExpanded" ScaleX="1.2" />
         </ResourceDictionary>
-       
+
     </Application.Resources>
 </Application>

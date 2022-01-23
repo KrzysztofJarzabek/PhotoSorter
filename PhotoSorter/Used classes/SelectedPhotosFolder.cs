@@ -23,6 +23,8 @@ namespace PhotoSorter
         /// <param name="newFolderName"></param>
         public static void CreateSelectedPhotosFolder(string textFilePath, string newFolderName)
         {
+            if (textFilePath == null) return;
+
             CreateNewFolder(textFilePath, newFolderName);
             CopyPhotosToNewFolder(textFilePath);
 
