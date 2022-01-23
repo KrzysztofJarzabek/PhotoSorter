@@ -15,8 +15,8 @@ namespace PhotoSorter
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="collectionName"></param>
-        public static void AddCollectionToLibraryFile(string collectionName)
+        /// <param name="collectionFileCompletePath"></param>
+        public static void AddCollectionToLibraryFile(string collectionFileCompletePath)
         {
             //string completeFilePath = "@" + collectionName + ".txt";
             CreateFileIfNotPresent();
@@ -25,7 +25,7 @@ namespace PhotoSorter
             try
             {
                 fileConnection = new StreamWriter(path, true);
-                fileConnection.WriteLine(collectionName); //zmienić sposób zapisu aby można to było wyekstraktować później
+                fileConnection.WriteLine(collectionFileCompletePath); //zmienić sposób zapisu aby można to było wyekstraktować później
                 fileConnection.Close();
             }
             catch (Exception)

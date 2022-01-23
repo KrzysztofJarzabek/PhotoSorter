@@ -18,7 +18,7 @@ namespace PhotoSorter
         public Dictionary<int, string> filesList = new Dictionary<int, string>();
         public List<string> selectedFilesList = new List<string>();
         internal string directoryPath;
-        internal string textFilePath;
+        internal string collectionFileCompletePath;
         internal string newFolderName;
         internal bool createNewFolderStatus;
         internal int currentOpenedFile;
@@ -30,7 +30,7 @@ namespace PhotoSorter
 
             directoryPath = photosPath;
             newFolderName = collectionName;
-            textFilePath = photosPath + "\\" + collectionName + ".txt"; // do zmiany
+            collectionFileCompletePath = photosPath + "\\" + collectionName + ".txt"; // do zmiany
             createNewFolderStatus = AddNewCollection.createNewFolderChecked;
             currentOpenedFile = 1;
 
@@ -41,21 +41,21 @@ namespace PhotoSorter
 
         private void exitButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            CollectionsFile.WriteSelectedFilesListToFile(textFilePath, selectedFilesList);
+            CollectionsFile.WriteSelectedFilesListToFile(collectionFileCompletePath, selectedFilesList);
             Close();
-            if (createNewFolderStatus) SelectedPhotosFolder.CreateSelectedPhotosFolder(textFilePath, newFolderName);
+            if (createNewFolderStatus) SelectedPhotosFolder.CreateSelectedPhotosFolder(collectionFileCompletePath, newFolderName);
         }
 
         private void imageAddButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             AddFileToSelectedFilesList();
-            CollectionsFile.WriteSelectedFilesListToFile(textFilePath, selectedFilesList);
+            CollectionsFile.WriteSelectedFilesListToFile(collectionFileCompletePath, selectedFilesList);
         }
 
         private void removeImageButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             RemoveFileFromSelectedFilesList();
-            CollectionsFile.WriteSelectedFilesListToFile(textFilePath, selectedFilesList);
+            CollectionsFile.WriteSelectedFilesListToFile(collectionFileCompletePath, selectedFilesList);
         }
 
         private void AddFileToSelectedFilesList()

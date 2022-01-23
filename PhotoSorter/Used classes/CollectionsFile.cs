@@ -11,11 +11,11 @@ namespace PhotoSorter
         /// <summary>
         /// Writes list of selected photos to indicated .txt file localization.
         /// </summary>
-        /// <param name="textFilePath"></param>
+        /// <param name="collectionFileCompletePath"></param>
         /// <param name="selectedFilesList"></param>
-        public static void WriteSelectedFilesListToFile(string textFilePath, List<string> selectedFilesList)
+        public static void WriteSelectedFilesListToFile(string collectionFileCompletePath, List<string> selectedFilesList)
         {
-            StreamWriter fileWriter = new StreamWriter(textFilePath, false);
+            StreamWriter fileWriter = new StreamWriter(collectionFileCompletePath, false);
             try
             {
                 foreach (var item in selectedFilesList)
@@ -33,14 +33,14 @@ namespace PhotoSorter
         /// <summary>
         /// Gets list of photos names in .txt collection file from indicated full path.
         /// </summary>
-        /// <param name="collectionFilePath"></param>
+        /// <param name="collectionFileCompletePath"></param>
         /// <returns></returns>
-        public static List<string> GetCollectionPhotosNamesList(string collectionFilePath)
+        public static List<string> GetCollectionPhotosNamesList(string collectionFileCompletePath)
         {
-            if (collectionFilePath == null || collectionFilePath == "") return null;
+            if (collectionFileCompletePath == null || collectionFileCompletePath == "") return null;
 
             List<string> CollectionFilesNames = new List<string>();
-            StreamReader streamReader = new StreamReader(collectionFilePath, true);
+            StreamReader streamReader = new StreamReader(collectionFileCompletePath, true);
             try
             {
                 while (true)
@@ -61,10 +61,10 @@ namespace PhotoSorter
         /// <summary>
         /// Delete collection .txt file.
         /// </summary>
-        /// <param name="collectionFilePath"></param>
-        public static void DeleteCollectionFile(string collectionFilePath)
+        /// <param name="collectionFileCompletePath"></param>
+        public static void DeleteCollectionFile(string collectionFileCompletePath)
         {
-            System.IO.File.Delete(collectionFilePath);
+            System.IO.File.Delete(collectionFileCompletePath);
         }
 
 

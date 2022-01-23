@@ -5,7 +5,7 @@ using System.IO;
 
 namespace PhotoSorter
 {
-    public class CollectionsStatictics
+    public class CollectionsStatistics
     {
         //Zwrócenie tablicy wszystkich kolekcji
         //liczba zdjęć w kolekcji
@@ -16,50 +16,50 @@ namespace PhotoSorter
         public float sizeOfCollection;
         public bool isFolderPresent;
 
-        public CollectionsStatictics() { }
-        public CollectionsStatictics(string collectionLibraryPath)
+        public CollectionsStatistics() { }
+        public CollectionsStatistics(string collectionLibraryPath)
         {
 
         }
 
         /// <summary>
-        /// Counts photos quantity in collection. textFilePath is the complete path to .txt file.
+        /// Counts photos quantity in collection. collectionFileCompletePath is the complete path to .txt file.
         /// </summary>
-        /// <param name="textFilePath"></param>
+        /// <param name="collectionFileCompletePath"></param>
         /// <returns></returns>
-        public static int CountPhotosInCollection(string textFilePath)
+        public static int CountPhotosInCollection(string collectionFileCompletePath)
         {
-            if (textFilePath == null) return 0;
+            if (collectionFileCompletePath == null) return 0;
 
-            List<string> selectedFilesList = SelectedPhotosFolder.GetPhotosNamesFromCollection(textFilePath);
+            List<string> selectedFilesList = SelectedPhotosFolder.GetPhotosNamesFromCollection(collectionFileCompletePath);
             return selectedFilesList.Count;
         }
 
         /// <summary>
-        /// Counts the complete size [MB] of photos in collection. textFilePath is the complete path to .txt file.
+        /// Counts the complete size [MB] of photos in collection. collectionFileCompletePath is the complete path to .txt file.
         /// </summary>
-        /// <param name="textFilePath"></param>
+        /// <param name="collectionFileCompletePath"></param>
         /// <returns></returns>
-        public static double CountSizeOfPhotosInCollection(string textFilePath)
+        public static double CountSizeOfPhotosInCollection(string collectionFileCompletePath)
         {
-            if (textFilePath == null) return 0;
+            if (collectionFileCompletePath == null) return 0;
 
-            List<string> selectedFilesList = SelectedPhotosFolder.GetPhotosNamesFromCollection(textFilePath);
-            string picturesPath = System.IO.Directory.GetParent(textFilePath).ToString();
-            double pictureCompleteSize = 0.00D;
+            List<string> selectedFilesList = SelectedPhotosFolder.GetPhotosNamesFromCollection(collectionFileCompletePath);
+            string photosPath = System.IO.Directory.GetParent(collectionFileCompletePath).ToString();
+            double photosCompleteSize = 0.00D;
 
             foreach (var picture in selectedFilesList)
             {
-                FileInfo fileInfo = new(picturesPath + "\\" + picture);
-                pictureCompleteSize += (double)fileInfo.Length / 1048576;
+                FileInfo fileInfo = new(photosPath + "\\" + picture);
+                photosCompleteSize += (double)fileInfo.Length / 1048576;
             }
-            return Math.Round(pictureCompleteSize, 2);
+            return Math.Round(photosCompleteSize, 2);
         }
 
-        public static bool CheckIfPhotosFolderExists(string textFilePath)
+        public static bool CheckIfPhotosFolderExists(string collectionFileCompletePath)
         {
-            if (textFilePath == null) return false;
-            string folderPath = System.IO.Directory.GetParent(textFilePath).ToString() + "\\" + System.IO.Path.GetFileNameWithoutExtension(textFilePath);
+            if (collectionFileCompletePath == null) return false;
+            string folderPath = System.IO.Directory.GetParent(collectionFileCompletePath).ToString() + "\\" + System.IO.Path.GetFileNameWithoutExtension(collectionFileCompletePath);
             return System.IO.Directory.Exists(folderPath);
         }
 
@@ -68,7 +68,6 @@ namespace PhotoSorter
             if (photosFolderExists) return "Istnieje";
             else return "Nie istnieje.";
         }
-
 
     }
 }

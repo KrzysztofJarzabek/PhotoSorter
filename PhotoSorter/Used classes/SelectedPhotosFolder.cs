@@ -17,16 +17,16 @@ namespace PhotoSorter
         internal static string fileDestinationName;
 
         /// <summary>
-        /// Creates folder with copy of collection photos. TextFilePath is the complete path to collection .txt file.
+        /// Creates folder with copy of collection photos. collectionFileCompletePath is the complete path to collection .txt file.
         /// </summary>
-        /// <param name="textFilePath"></param>
+        /// <param name="collectionFileCompletePath"></param>
         /// <param name="newFolderName"></param>
-        public static void CreateSelectedPhotosFolder(string textFilePath, string newFolderName)
+        public static void CreateSelectedPhotosFolder(string collectionFileCompletePath, string newFolderName)
         {
-            if (textFilePath == null) return;
+            if (collectionFileCompletePath == null) return;
 
-            CreateNewFolder(textFilePath, newFolderName);
-            CopyPhotosToNewFolder(textFilePath);
+            CreateNewFolder(collectionFileCompletePath, newFolderName);
+            CopyPhotosToNewFolder(collectionFileCompletePath);
 
             //zabezpieczenie jak wcześniejszy etap nie wyjdzie?
         }
@@ -35,20 +35,20 @@ namespace PhotoSorter
         /// Removes folder with photos (if exists) from indicated collection.
         /// </summary>
         /// <param name="collectionFilePath"></param>
-        public static void DeletePhotosCollectionFolder(string collectionFilePath)
+        public static void DeletePhotosCollectionFolder(string collectionFileCompletePath)
         {
-            string photosFolderDirectory = System.IO.Directory.GetParent(collectionFilePath) + "\\" + System.IO.Path.GetFileNameWithoutExtension(collectionFilePath);
+            string photosFolderDirectory = System.IO.Directory.GetParent(collectionFileCompletePath) + "\\" + System.IO.Path.GetFileNameWithoutExtension(collectionFileCompletePath);
             if (System.IO.Directory.Exists(photosFolderDirectory)) System.IO.Directory.Delete(photosFolderDirectory, true);
         }
 
         /// <summary>
         /// Gets photos names from collection .txt file from path txtFilePath.
         /// </summary>
-        /// <param name="textFilePath"></param>
+        /// <param name="collectionFileCompletePath"></param>
         /// <returns></returns>
-        public static List<string> GetPhotosNamesFromCollection(string textFilePath)
+        public static List<string> GetPhotosNamesFromCollection(string collectionFileCompletePath)
         {
-            StreamReader namesReader = new(textFilePath);
+            StreamReader namesReader = new(collectionFileCompletePath);
             List<string> selectedFilesList = new();
 
             do
@@ -64,9 +64,9 @@ namespace PhotoSorter
             return selectedFilesList;
         }
 
-        private static void CreateNewFolder(string textFilePath, string newFolderName)
+        private static void CreateNewFolder(string collectionFileCompletePath, string newFolderName)
         {
-            directoryFolder = System.IO.Directory.GetParent(textFilePath).ToString();
+            directoryFolder = System.IO.Directory.GetParent(collectionFileCompletePath).ToString();
             newDirectoryFolder = directoryFolder + "\\" + newFolderName;
             try
             {
@@ -78,10 +78,10 @@ namespace PhotoSorter
             }
         }
 
-        private static void CopyPhotosToNewFolder(string textFilePath)
+        private static void CopyPhotosToNewFolder(string collectionFileCompletePath)
         {
             List<string> selectedFilesList = new();
-            selectedFilesList = GetPhotosNamesFromCollection(textFilePath);
+            selectedFilesList = GetPhotosNamesFromCollection(collectionFileCompletePath);
 
             foreach (var item in selectedFilesList)
             {
