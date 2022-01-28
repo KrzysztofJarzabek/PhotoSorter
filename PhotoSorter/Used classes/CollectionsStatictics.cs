@@ -8,9 +8,7 @@ namespace PhotoSorter
     public class CollectionsStatistics
     {
         //Zwrócenie tablicy wszystkich kolekcji
-        //liczba zdjęć w kolekcji
-        //rozmiar danej kolekcji, 
-        //czy folder istnieje czy nie
+        
 
         public int quantityOfPhotosInColleciton;
         public float sizeOfCollection;
@@ -20,7 +18,18 @@ namespace PhotoSorter
         public CollectionsStatistics(string collectionLibraryPath)
         {
 
+            //dane stałe
+            //funkcja update/create dane
+            //zwróć tablicę kolekcji
+            //zlicz kolekcje
+            //zlicz rozmiar każdej i sumuj
+            //zlicz sztuki i zsumuj
+            //wywołaj funkcję sprawdznia czy istnieje folder + zlicz oszczędność 
         }
+
+
+
+
 
         /// <summary>
         /// Counts photos quantity in collection. collectionFileCompletePath is the complete path to .txt file.
@@ -56,6 +65,11 @@ namespace PhotoSorter
             return Math.Round(photosCompleteSize, 2);
         }
 
+        /// <summary>
+        /// Check collection if folder was created and is present od disk.
+        /// </summary>
+        /// <param name="collectionFileCompletePath"></param>
+        /// <returns></returns>
         public static bool CheckIfPhotosFolderExists(string collectionFileCompletePath)
         {
             if (collectionFileCompletePath == null) return false;
@@ -63,9 +77,14 @@ namespace PhotoSorter
             return System.IO.Directory.Exists(folderPath);
         }
 
-        public static string StringFromPhotosFolderExists(bool photosFolderExists)
+        /// <summary>
+        /// Change bool value of collection photos folder presence to particular string.
+        /// </summary>
+        /// <param name="photosFolderExists"></param>
+        /// <returns></returns>
+        public static string StringFromPhotosFolderExists(string collectionFileCompletePath)
         {
-            if (photosFolderExists) return "Istnieje";
+            if (CheckIfPhotosFolderExists(collectionFileCompletePath)) return "Istnieje";
             else return "Nie istnieje.";
         }
 

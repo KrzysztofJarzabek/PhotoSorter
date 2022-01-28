@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentWPF" Version="0.10.2" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
   </ItemGroup>
 

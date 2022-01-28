@@ -1,0 +1,75 @@
+﻿<Page x:Class="PhotoSorter.Statistics"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d"
+      d:DesignHeight="600" d:DesignWidth="700"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+              
+      FontFamily="Arial" FontSize="15" Cursor="Arrow"
+             
+    Title="Statistics">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="550"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Background="White" />
+        <Border Grid.Row="0" Grid.Column="1" Background="White" />
+        <Border Grid.Row="1" Grid.Column="0" Background="Transparent" />
+        <Border Grid.Row="1" Grid.Column="1" Background="Transparent" />
+
+        <ListView Grid.Column="1">
+            <ListViewItem>
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="ChartArc" Width="35" Height="35" VerticalAlignment="Center" Foreground="Black"/>
+                    <TextBlock Text="Statystyki kolekcji" FontSize="26" Foreground="Black" Margin="15"/>
+                </StackPanel>
+            </ListViewItem>
+            <StackPanel>
+                <TextBlock Text="Ilość wszystkich kolekcji:" FontSize="16" Foreground="Black" />
+                <TextBox x:Name="quantityOfCollectionsTextBox" Foreground="Black" />
+                <Rectangle Width="250" Height="1" Fill="Black" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Rozmiar bazowych plików:" FontSize="16" Foreground="Black" />
+                <TextBox x:Name="sizeOfBaseFilesTextBox" Foreground="Black" />
+                <Rectangle Width="250" Height="1" Fill="Black" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Rozmiar wszystkich kolekcji:" FontSize="16" Foreground="Black" />
+                <TextBox x:Name="sizeOfCollectionsTextBox" Foreground="Black" />
+                <Rectangle Width="250" Height="1" Fill="Black" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Ilość zdjęć w kolekcjach:" FontSize="16" Foreground="Black" />
+                <TextBox x:Name="quantityOfPhotosInCollectionTextBox" Foreground="Black" />
+                <Rectangle Width="250" Height="1" Fill="Black" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Kolekcje z utworzonymi folderami:" FontSize="16" Foreground="Black" />
+                <TextBox x:Name="quantityOfCollectionsWithFoldersTextBox" Foreground="Black" />
+                <Rectangle Width="250" Height="1" Fill="Black" />
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Zaoszczędzone miejsce na dysku:" FontSize="16"  Foreground="Black" />
+                <TextBox x:Name="savedSpaceOnDiskTextBox" Foreground="Black" />
+                <Rectangle Width="250" Height="1" Fill="Black" />
+            </StackPanel>
+            
+            <ListViewItem x:Name="optimizeMemoryButton" MouseLeftButtonUp="ListViewItem_MouseLeftButtonUp" Foreground="Black">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="UploadNetworkOutline" Width="30" Height="30"/>
+                    <TextBlock Text="Usuń niepotrzebne foldery aby oszczędzić miejsce" Margin="5,3,0,0" TextWrapping="Wrap" FontSize="20"/>
+                </StackPanel>
+            </ListViewItem>
+        </ListView>
+
+    </Grid>
+</Page>

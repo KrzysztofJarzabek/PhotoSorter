@@ -74,7 +74,7 @@ namespace PhotoSorter
 
             numberOfPhotosInCollection.Text = CollectionsStatistics.CountPhotosInCollection(GetPathFromSelectedCollection()).ToString();
             sizeOfPhotosCollection.Text = CollectionsStatistics.CountSizeOfPhotosInCollection(GetPathFromSelectedCollection()).ToString() + " [MB]";
-            isFolderPresent.Text = CollectionsStatistics.StringFromPhotosFolderExists(CollectionsStatistics.CheckIfPhotosFolderExists(GetPathFromSelectedCollection()));
+            isFolderPresent.Text = CollectionsStatistics.StringFromPhotosFolderExists(GetPathFromSelectedCollection());
         }
 
         /// <summary>

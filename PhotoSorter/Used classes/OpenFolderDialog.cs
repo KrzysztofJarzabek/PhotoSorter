@@ -10,7 +10,7 @@ namespace PhotoSorter
 {
     public static class OpenFolderDialog
     {
-
+        
         /// <summary>
         /// Opens a file dialog and returns folder of indicated file.
         /// </summary>
