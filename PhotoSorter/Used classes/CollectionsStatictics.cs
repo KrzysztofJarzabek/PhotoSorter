@@ -1,35 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+
 
 
 namespace PhotoSorter
 {
     public class CollectionsStatistics
     {
-        //Zwrócenie tablicy wszystkich kolekcji
-        
+        public double basePhotosCompleteSize { get; }
+        public int collectionsCount { get; }
+        public double allCollectionsSize { get; }
+        public int photosInCollectionCount { get; }
+        public int collectionsWithFolderPresent { get; }
+        public double savedSpaceOnDisk { get; }
 
-        public int quantityOfPhotosInColleciton;
-        public float sizeOfCollection;
-        public bool isFolderPresent;
+        CollectionsListCreator collectionsList = new(); //nazwa do zmiany
 
         public CollectionsStatistics() { }
         public CollectionsStatistics(string collectionLibraryPath)
         {
+            collectionsList.updateAllCollectionsFromFile();
 
-            //dane stałe
-            //funkcja update/create dane
-            //zwróć tablicę kolekcji
-            //zlicz kolekcje
-            //zlicz rozmiar każdej i sumuj
-            //zlicz sztuki i zsumuj
-            //wywołaj funkcję sprawdznia czy istnieje folder + zlicz oszczędność 
+            basePhotosCompleteSize = GetAllCollecitonsSize();
+            collectionsCount = GetCollectionsCount();
+            allCollectionsSize = CountSizeOfAllCollections();
+            photosInCollectionCount = CountPhotosInAllCollections();
+            collectionsWithFolderPresent = CountCollectionsWithFolders();
+            savedSpaceOnDisk = CountSavedSpaceOnDisk();
+                        
         }
-
-
-
-
 
         /// <summary>
         /// Counts photos quantity in collection. collectionFileCompletePath is the complete path to .txt file.
@@ -40,7 +41,7 @@ namespace PhotoSorter
         {
             if (collectionFileCompletePath == null) return 0;
 
-            List<string> selectedFilesList = SelectedPhotosFolder.GetPhotosNamesFromCollection(collectionFileCompletePath);
+            List<string> selectedFilesList = SelectedPhotosFolder.GetPhotosNamesFromCollectionFile(collectionFileCompletePath);
             return selectedFilesList.Count;
         }
 
@@ -53,13 +54,13 @@ namespace PhotoSorter
         {
             if (collectionFileCompletePath == null) return 0;
 
-            List<string> selectedFilesList = SelectedPhotosFolder.GetPhotosNamesFromCollection(collectionFileCompletePath);
+            List<string> selectedFilesList = SelectedPhotosFolder.GetPhotosNamesFromCollectionFile(collectionFileCompletePath);
             string photosPath = System.IO.Directory.GetParent(collectionFileCompletePath).ToString();
             double photosCompleteSize = 0.00D;
 
-            foreach (var picture in selectedFilesList)
+            foreach (var photo in selectedFilesList)
             {
-                FileInfo fileInfo = new(photosPath + "\\" + picture);
+                FileInfo fileInfo = new(photosPath + "\\" + photo);
                 photosCompleteSize += (double)fileInfo.Length / 1048576;
             }
             return Math.Round(photosCompleteSize, 2);
@@ -88,5 +89,114 @@ namespace PhotoSorter
             else return "Nie istnieje.";
         }
 
+        /// <summary>
+        /// Gets quantity of all saved collections.
+        /// </summary>
+        /// <returns></returns>
+        private int GetCollectionsCount()
+        {
+            int collectionCount = 0;
+            foreach (var item in collectionsList.collectionsList)
+            {
+                collectionCount++;
+            }
+            return collectionCount;
+        }
+
+        /// <summary>
+        /// Gets size of all saved collections.
+        /// </summary>
+        /// <returns></returns>
+        private double GetAllCollecitonsSize()
+        {
+            double basePhotosCompleteSize = 0.00D;
+            foreach (var item in collectionsList.collectionsList)
+            {
+                basePhotosCompleteSize += CountSizeOfBaseFolder(item.baseCollectionPath);
+            }
+
+            return basePhotosCompleteSize;
+        }
+
+        /// <summary>
+        /// Counts size of photos in specified collections.
+        /// </summary>
+        /// <param name="baseCollectionPath">Path to base collection folder.</param>
+        /// <returns></returns>
+        private double CountSizeOfBaseFolder(string baseCollectionPath)
+        {
+            if (baseCollectionPath == null) return 0;
+
+            string[] selectedFilesList = System.IO.Directory.GetFiles(baseCollectionPath, "*" + "jpg");
+            double photosCompleteSize = 0.00D;
+
+            foreach (var photo in selectedFilesList)
+            {
+                FileInfo fileInfo = new(photo);
+                photosCompleteSize += (double)fileInfo.Length / 1048576;
+            }
+            return Math.Round(photosCompleteSize, 2);
+        }
+
+        /// <summary>
+        /// Counts size of photos in all collections.
+        /// </summary>
+        /// <returns></returns>
+        private double CountSizeOfAllCollections()
+        {
+            double photosCompleteSize = 0.00D;
+            foreach (var collection in collectionsList.collectionsList)
+            {
+                photosCompleteSize += CountSizeOfPhotosInCollection(collection.completeTextFilePath);
+            }
+            return Math.Round(photosCompleteSize, 2);
+        }
+
+        /// <summary>
+        /// Counts quantity of photos in all collections.
+        /// </summary>
+        /// <returns></returns>
+        private int CountPhotosInAllCollections()
+        {
+            int photosCount = 0;
+            foreach (var collection in collectionsList.collectionsList)
+            {
+                photosCount += CountPhotosInCollection(collection.completeTextFilePath);
+            }
+            return photosCount;
+        }
+
+        /// <summary>
+        /// Returns quantity of collections with selected photos folder present.
+        /// </summary>
+        /// <returns></returns>
+        private int CountCollectionsWithFolders()
+        {
+            int collectionsWithFolders = 0;
+            foreach (var collection in collectionsList.collectionsList)
+            {
+                if (CheckIfPhotosFolderExists(collection.completeTextFilePath)) collectionsWithFolders++;
+            }
+            return collectionsWithFolders;
+        }
+
+        /// <summary>
+        /// Counts saved memory space on disc due to collection mirrors.
+        /// </summary>
+        /// <returns></returns>
+        private double CountSavedSpaceOnDisk()
+        {
+            double savedSpace = 0.00D;
+            foreach (var collection in collectionsList.collectionsList)
+            {
+                if (!CheckIfPhotosFolderExists(collection.completeTextFilePath))
+                {
+                    savedSpace += CountSizeOfPhotosInCollection(collection.completeTextFilePath);
+                }
+            }
+            return Math.Round(savedSpace, 2);
+        }
+
     }
+
 }

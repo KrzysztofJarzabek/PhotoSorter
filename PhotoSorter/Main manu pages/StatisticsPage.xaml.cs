@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,15 +25,21 @@ namespace PhotoSorter
     /// </summary>
     public partial class Statistics : Page
     {
+
         public Statistics()
         {
             InitializeComponent();
+            CollectionsStatistics collectionsStatistics = new CollectionsStatistics(@"CollectionsLibrary.txt");
 
-
-
+            quantityOfCollectionsTextBox.Text = collectionsStatistics.collectionsCount.ToString();
+            sizeOfBaseFilesTextBox.Text = collectionsStatistics.basePhotosCompleteSize.ToString() + " MB";
+            sizeOfCollectionsTextBox.Text = collectionsStatistics.allCollectionsSize.ToString() + " MB";
+            quantityOfPhotosInCollectionsTextBox.Text = collectionsStatistics.photosInCollectionCount.ToString();
+            quantityOfCollectionsWithFoldersTextBox.Text = collectionsStatistics.collectionsWithFolderPresent.ToString();
+            savedSpaceOnDiskTextBox.Text = collectionsStatistics.savedSpaceOnDisk.ToString() + " MB";
         }
 
-        private void ListViewItem_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void optimizeMemoryButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
 
         }

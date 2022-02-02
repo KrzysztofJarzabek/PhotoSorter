@@ -46,9 +46,9 @@ namespace PhotoSorter
         /// </summary>
         /// <param name="collectionFileCompletePath"></param>
         /// <returns></returns>
-        public static List<string> GetPhotosNamesFromCollection(string collectionFileCompletePath)
+        public static List<string> GetPhotosNamesFromCollectionFile(string collectionFileCompletePath)
         {
-            StreamReader namesReader = new(collectionFileCompletePath);
+            StreamReader namesReader = new StreamReader(collectionFileCompletePath);
             List<string> selectedFilesList = new();
 
             do
@@ -81,7 +81,7 @@ namespace PhotoSorter
         private static void CopyPhotosToNewFolder(string collectionFileCompletePath)
         {
             List<string> selectedFilesList = new();
-            selectedFilesList = GetPhotosNamesFromCollection(collectionFileCompletePath);
+            selectedFilesList = GetPhotosNamesFromCollectionFile(collectionFileCompletePath);
 
             foreach (var item in selectedFilesList)
             {

@@ -49,7 +49,7 @@
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Ilość zdjęć w kolekcjach:" FontSize="16" Foreground="Black" />
-                <TextBox x:Name="quantityOfPhotosInCollectionTextBox" Foreground="Black" />
+                <TextBox x:Name="quantityOfPhotosInCollectionsTextBox" Foreground="Black" />
                 <Rectangle Width="250" Height="1" Fill="Black" />
             </StackPanel>
             <StackPanel>
@@ -62,8 +62,8 @@
                 <TextBox x:Name="savedSpaceOnDiskTextBox" Foreground="Black" />
                 <Rectangle Width="250" Height="1" Fill="Black" />
             </StackPanel>
-            
-            <ListViewItem x:Name="optimizeMemoryButton" MouseLeftButtonUp="ListViewItem_MouseLeftButtonUp" Foreground="Black">
+
+            <ListViewItem x:Name="optimizeMemoryButton" MouseLeftButtonUp="optimizeMemoryButton_MouseLeftButtonUp" Foreground="Black">
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="UploadNetworkOutline" Width="30" Height="30"/>
                     <TextBlock Text="Usuń niepotrzebne foldery aby oszczędzić miejsce" Margin="5,3,0,0" TextWrapping="Wrap" FontSize="20"/>
