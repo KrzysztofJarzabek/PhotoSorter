@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace PhotoSorter
 {
@@ -11,7 +7,7 @@ namespace PhotoSorter
     {
         public readonly List<CollectionObject> collectionsList = new List<CollectionObject>();
 
-        public void updateAllCollectionsFromFile()
+        public void UpdateAllCollectionsFromFile()
         {
             List<string> collectionTemporaryList = CollectionsLibraryFile.GetCollectionsList();
 

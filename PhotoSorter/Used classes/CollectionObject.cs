@@ -8,18 +8,18 @@ namespace PhotoSorter
 {
     class CollectionObject
     {
-        public string completeTextFilePath { get; }
+        public string collectionFileCompletePath { get; }
         public string baseCollectionPath { get; }
         public string collectionName { get; }
         public string photosFolderPath { get; }
 
-        public CollectionObject(string _completeTextFilePath)
+        public CollectionObject(string collectionFileCompletePath)
         {
-            completeTextFilePath = _completeTextFilePath;
+            this.collectionFileCompletePath = collectionFileCompletePath;
 
-            baseCollectionPath = setBaseCollectionPath(completeTextFilePath);
-            collectionName = setCollectionName(completeTextFilePath);
-            photosFolderPath = setPhotosFolderPath(completeTextFilePath);
+            baseCollectionPath = setBaseCollectionPath(this.collectionFileCompletePath);
+            collectionName = setCollectionName(this.collectionFileCompletePath);
+            photosFolderPath = setPhotosFolderPath(this.collectionFileCompletePath);
         }
 
         /// <summary>
@@ -27,9 +27,9 @@ namespace PhotoSorter
         /// </summary>
         /// <param name="completeTextFilePath"></param>
         /// <returns></returns>
-        private string setBaseCollectionPath(string completeTextFilePath)
+        private string setBaseCollectionPath(string collectionFileCompletePath)
         {
-            return System.IO.Directory.GetParent(completeTextFilePath).ToString();
+            return System.IO.Directory.GetParent(collectionFileCompletePath).ToString();
         }
 
         /// <summary>
@@ -37,9 +37,9 @@ namespace PhotoSorter
         /// </summary>
         /// <param name="completeTextFilePath"></param>
         /// <returns></returns>
-        private string setCollectionName(string completeTextFilePath)
+        private string setCollectionName(string collectionFileCompletePath)
         {
-            return System.IO.Path.GetFileNameWithoutExtension(completeTextFilePath);
+            return System.IO.Path.GetFileNameWithoutExtension(collectionFileCompletePath);
         }
 
         /// <summary>
@@ -47,9 +47,9 @@ namespace PhotoSorter
         /// </summary>
         /// <param name="completeTextFilePath"></param>
         /// <returns></returns>
-        private string setPhotosFolderPath(string completeTextFilePath)
+        private string setPhotosFolderPath(string collectionFileCompletePath)
         {
-            return System.IO.Path.GetDirectoryName(completeTextFilePath) + "\\" + System.IO.Path.GetFileNameWithoutExtension(completeTextFilePath);
+            return System.IO.Path.GetDirectoryName(collectionFileCompletePath) + "\\" + System.IO.Path.GetFileNameWithoutExtension(collectionFileCompletePath);
         }
     }
 }

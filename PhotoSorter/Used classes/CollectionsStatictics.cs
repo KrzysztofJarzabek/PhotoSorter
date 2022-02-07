@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 
 
@@ -16,12 +15,12 @@ namespace PhotoSorter
         public int collectionsWithFolderPresent { get; }
         public double savedSpaceOnDisk { get; }
 
-        CollectionsListCreator collectionsList = new(); //nazwa do zmiany
+        CollectionsListCreator collectionsObjectsList = new();
 
         public CollectionsStatistics() { }
         public CollectionsStatistics(string collectionLibraryPath)
         {
-            collectionsList.updateAllCollectionsFromFile();
+            collectionsObjectsList.UpdateAllCollectionsFromFile();
 
             basePhotosCompleteSize = GetAllCollecitonsSize();
             collectionsCount = GetCollectionsCount();
@@ -29,8 +28,8 @@ namespace PhotoSorter
             photosInCollectionCount = CountPhotosInAllCollections();
             collectionsWithFolderPresent = CountCollectionsWithFolders();
             savedSpaceOnDisk = CountSavedSpaceOnDisk();
-                        
         }
+
 
         /// <summary>
         /// Counts photos quantity in collection. collectionFileCompletePath is the complete path to .txt file.
@@ -89,6 +88,7 @@ namespace PhotoSorter
             else return "Nie istnieje.";
         }
 
+
         /// <summary>
         /// Gets quantity of all saved collections.
         /// </summary>
@@ -96,7 +96,7 @@ namespace PhotoSorter
         private int GetCollectionsCount()
         {
             int collectionCount = 0;
-            foreach (var item in collectionsList.collectionsList)
+            foreach (var item in collectionsObjectsList.collectionsList)
             {
                 collectionCount++;
             }
@@ -110,7 +110,7 @@ namespace PhotoSorter
         private double GetAllCollecitonsSize()
         {
             double basePhotosCompleteSize = 0.00D;
-            foreach (var item in collectionsList.collectionsList)
+            foreach (var item in collectionsObjectsList.collectionsList)
             {
                 basePhotosCompleteSize += CountSizeOfBaseFolder(item.baseCollectionPath);
             }
@@ -145,9 +145,9 @@ namespace PhotoSorter
         private double CountSizeOfAllCollections()
         {
             double photosCompleteSize = 0.00D;
-            foreach (var collection in collectionsList.collectionsList)
+            foreach (var collection in collectionsObjectsList.collectionsList)
             {
-                photosCompleteSize += CountSizeOfPhotosInCollection(collection.completeTextFilePath);
+                photosCompleteSize += CountSizeOfPhotosInCollection(collection.collectionFileCompletePath);
             }
             return Math.Round(photosCompleteSize, 2);
         }
@@ -159,9 +159,9 @@ namespace PhotoSorter
         private int CountPhotosInAllCollections()
         {
             int photosCount = 0;
-            foreach (var collection in collectionsList.collectionsList)
+            foreach (var collection in collectionsObjectsList.collectionsList)
             {
-                photosCount += CountPhotosInCollection(collection.completeTextFilePath);
+                photosCount += CountPhotosInCollection(collection.collectionFileCompletePath);
             }
             return photosCount;
         }
@@ -173,9 +173,9 @@ namespace PhotoSorter
         private int CountCollectionsWithFolders()
         {
             int collectionsWithFolders = 0;
-            foreach (var collection in collectionsList.collectionsList)
+            foreach (var collection in collectionsObjectsList.collectionsList)
             {
-                if (CheckIfPhotosFolderExists(collection.completeTextFilePath)) collectionsWithFolders++;
+                if (CheckIfPhotosFolderExists(collection.collectionFileCompletePath)) collectionsWithFolders++;
             }
             return collectionsWithFolders;
         }
@@ -187,16 +187,15 @@ namespace PhotoSorter
         private double CountSavedSpaceOnDisk()
         {
             double savedSpace = 0.00D;
-            foreach (var collection in collectionsList.collectionsList)
+            foreach (var collection in collectionsObjectsList.collectionsList)
             {
-                if (!CheckIfPhotosFolderExists(collection.completeTextFilePath))
+                if (!CheckIfPhotosFolderExists(collection.collectionFileCompletePath))
                 {
-                    savedSpace += CountSizeOfPhotosInCollection(collection.completeTextFilePath);
+                    savedSpace += CountSizeOfPhotosInCollection(collection.collectionFileCompletePath);
                 }
             }
             return Math.Round(savedSpace, 2);
         }
 
     }
-
 }
