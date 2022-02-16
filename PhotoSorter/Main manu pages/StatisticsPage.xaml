@@ -8,30 +8,26 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
               
       FontFamily="Arial" FontSize="15" Cursor="Arrow"
-             
-    Title="Statistics">
+      Title="Statistics">
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="15" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="550"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
+        <Border Grid.Column="0" Grid.Row="0" Background="White" />
+        <Border Grid.Column="1" Grid.Row="0" Background="White" />
+        <Border Grid.Column="0" Grid.Row="1" Background="White" />
+        <Border Grid.Column="1" Grid.Row="1" Background="White" />
+        <Border Grid.Column="0" Grid.Row="2" Background="Transparent" />
+        <Border Grid.Column="1" Grid.Row="2" Background="Transparent" />
 
-        <Border Grid.Row="0" Grid.Column="0" Background="White" />
-        <Border Grid.Row="0" Grid.Column="1" Background="White" />
-        <Border Grid.Row="1" Grid.Column="0" Background="Transparent" />
-        <Border Grid.Row="1" Grid.Column="1" Background="Transparent" />
-
-        <ListView Grid.Column="1">
-            <ListViewItem>
-                <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="ChartArc" Width="35" Height="35" VerticalAlignment="Center" Foreground="Black"/>
-                    <TextBlock Text="Statystyki kolekcji" FontSize="26" Foreground="Black" Margin="15"/>
-                </StackPanel>
-            </ListViewItem>
+        <ListView Grid.Column="1" Grid.Row="1">
             <StackPanel>
                 <TextBlock Text="Ilość wszystkich kolekcji:" FontSize="16" Foreground="Black" />
                 <TextBox x:Name="quantityOfCollectionsTextBox" Foreground="Black" />

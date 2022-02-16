@@ -23,32 +23,26 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        
+
+
         <StackPanel>
             <ListView>
                 <ListViewItem x:Name="addNewCollectionButton" Padding="1" MouseLeftButtonUp="addNewCollectionButton_MouseLeftButtonUp">
                     <StackPanel x:Name="newCollectionTab" Orientation="Horizontal" fw:PointerTracker.Enabled="True" >
                         <materialDesign:PackIcon Kind="ImageAdd" Width="25" Height="25" Margin="18" />
-                        <TextBlock Text="Nowe zestawienie" VerticalAlignment="Center" FontSize="15"/>
+                        <TextBlock Text="Nowa kolekcja" VerticalAlignment="Center" FontSize="15"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem x:Name="libraryButton" Padding="1" MouseLeftButtonUp="libraryButton_MouseLeftButtonUp_1">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="ImageAlbum" Width="25" Height="25" Margin="18"/>
-                        <TextBlock Text="Biblioteka zestawień" VerticalAlignment="Center" FontSize="15" />
+                        <TextBlock Text="Biblioteka kolekcji" VerticalAlignment="Center" FontSize="15" />
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem x:Name="statisticsButton" Padding="1" MouseLeftButtonUp="statisticsButton_MouseLeftButtonUp" >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="ChartArc" Width="25" Height="25" Margin="18"/>
-                        <TextBlock Text="Statystyki" VerticalAlignment="Center" FontSize="15"/>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem Padding="1" >
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Settings" Width="25" Height="25" Margin="18"/>
-                        <TextBlock Text="Ustawienia" VerticalAlignment="Center" FontSize="15"/>
+                        <TextBlock Text="Statystyki kolekcji" VerticalAlignment="Center" FontSize="15"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem x:Name="exitButton" Padding="1" MouseLeftButtonUp="exitButton_MouseLeftButtonUp" >
@@ -57,7 +51,7 @@
                         <TextBlock Text="Zamknij aplikację" VerticalAlignment="Center" FontSize="15"/>
                     </StackPanel>
                 </ListViewItem>
-               
+
             </ListView>
         </StackPanel>
 
@@ -68,6 +62,6 @@
 
     </Grid>
 
-    
-    
+
+
 </Window>

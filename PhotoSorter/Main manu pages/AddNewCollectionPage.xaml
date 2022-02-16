@@ -9,68 +9,74 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF" 
           
-      Foreground="Black"
-    
       FontFamily="Arial" FontSize="15" 
-      
       Title="AddNewCollection" Cursor="Arrow">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="15"/>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="90"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="80"/>
-            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Grid.Column="0" Background="White" />
-        <Border Grid.Row="0" Grid.Column="1" Background="White" />
-        <Border Grid.Row="0" Grid.Column="2" Background="White" />
-        <Border Grid.Row="1" Grid.Column="0" Background="White" />
-        <Border Grid.Row="1" Grid.Column="1" Background="White" />
-        <Border Grid.Row="1" Grid.Column="2" Background="White" />
-        <Border Grid.Row="2" Grid.Column="0" Background="White" />
-        <Border Grid.Row="2" Grid.Column="1" Background="White" />
-        <Border Grid.Row="2" Grid.Column="2" Background="White" />
-        <Border Grid.Row="3" Grid.Column="0" Background="White" />
-        <Border Grid.Row="3" Grid.Column="1" Background="White" />
-        <Border Grid.Row="3" Grid.Column="2" Background="White" />
-        <Border Grid.Row="4" Grid.Column="0" Background="White" />
-        <Border Grid.Row="4" Grid.Column="1" Background="White" />
-        <Border Grid.Row="4" Grid.Column="2" Background="White" />
-        <Border Grid.Row="5" Grid.Column="0" Background="Transparent" />
-        <Border Grid.Row="5" Grid.Column="1" Background="Transparent" />
-        <Border Grid.Row="5" Grid.Column="2" Background="Transparent" />
+        <Border Grid.Column="0" Grid.Row="0" Background="White" />
+        <Border Grid.Column="1" Grid.Row="0" Background="White" />
+        <Border Grid.Column="2" Grid.Row="0" Background="White" />
+        <Border Grid.Column="0" Grid.Row="1" Background="White" />
+        <Border Grid.Column="1" Grid.Row="1" Background="White" />
+        <Border Grid.Column="2" Grid.Row="1" Background="White" />
+        <Border Grid.Column="0" Grid.Row="2" Background="White" />
+        <Border Grid.Column="1" Grid.Row="2" Background="White" />
+        <Border Grid.Column="2" Grid.Row="2" Background="White" />
+        <Border Grid.Column="0" Grid.Row="3" Background="White" />
+        <Border Grid.Column="1" Grid.Row="3" Background="White" />
+        <Border Grid.Column="2" Grid.Row="3" Background="White" />
+        <Border Grid.Column="0" Grid.Row="4" Background="White" />
+        <Border Grid.Column="1" Grid.Row="4" Background="White" />
+        <Border Grid.Column="2" Grid.Row="4" Background="White" />
+        <Border Grid.Column="0" Grid.Row="5" Background="White" />
+        <Border Grid.Column="1" Grid.Row="5" Background="White" />
+        <Border Grid.Column="2" Grid.Row="5" Background="White" />
+        <Border Grid.Column="0" Grid.Row="6" Background="Transparent" />
+        <Border Grid.Column="1" Grid.Row="6" Background="Transparent" />
+        <Border Grid.Column="2" Grid.Row="6" Background="Transparent" />
 
-
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
-            <TextBlock Text="Nazwa kolekcji:"  />
-            <TextBox x:Name="collectionNameTextBox"  FontFamily="Segoe UI Light" Foreground="DarkGray" Text="Wprowadź nazwę kolekcji" Margin="0,5,10,0" GotFocus="collectionNameTextBox_GotFocus" />
-        </StackPanel>
-
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2">
-            <TextBlock Text="Lokalizacja głównego folderu" />
-            <TextBox x:Name="mainFolderLocalizationTextBox" FontFamily="Segoe UI Light" FontSize="13" Foreground="DarkGray" Text="Wybierz ścieżkę folderu."  Margin="0,5,10,0" GotFocus="mainFolderLocalizationTextBox_GotFocus"/>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" fw:PointerTracker.Enabled="True">
-            <TextBlock Text="Automatyczne tworzenie folderu" VerticalAlignment="Center" />
-            <ToggleButton x:Name="createFolderButton" IsChecked="{x:Null}" Background="LightGreen"  Margin="30,0,0,0" Checked="createFolderButton_Checked" />
-        </StackPanel>
-        <ListViewItem  x:Name="startSessionButton" Grid.Column="1" Grid.Row="4" Padding="10" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black" MouseLeftButtonUp="startSessionButton_MouseLeftButtonUp">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Zacznij sesję" FontSize="22"/>
-                <materialDesign:PackIcon Kind="ArrowRightBoldCircleOutline" Width="25" Height="25" Margin="20,0,0,0"/>
+        <ListView Grid.Column="1" Grid.Row="1" Grid.RowSpan="4">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="RenameBox" Width="25" Height="25" Foreground="Black"/>
+                <TextBlock Text="Nazwa kolekcji:" Foreground="Black" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+                <TextBox x:Name="collectionNameTextBox"  FontFamily="Segoe UI Light" FontSize="15" Foreground="DarkGray" Text="Wprowadź nazwę kolekcji" Margin="0,5,10,0" GotFocus="collectionNameTextBox_GotFocus" />
+                <Rectangle VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="280" Height="1" Fill="Black"/>
             </StackPanel>
-        </ListViewItem>
+            <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="FolderAdd" Width="25" Height="25" Foreground="Black"/>
+                    <TextBlock Text="Lokalizacja głównego folderu" VerticalAlignment="Center" Foreground="Black" Margin="10,0,0,0"/>
+                </StackPanel>
+                <TextBox x:Name="mainFolderLocalizationTextBox" FontFamily="Segoe UI Light" FontSize="15" Foreground="DarkGray" Text="Wybierz ścieżkę folderu."  Margin="0,5,10,0" GotFocus="mainFolderLocalizationTextBox_GotFocus"/>
+                <Rectangle VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="280" Height="1" Fill="Black"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" fw:PointerTracker.Enabled="True" Margin="0,10,0,0">
+                <TextBlock Text="Automatyczne tworzenie folderu" Foreground="Black" />
+                <ToggleButton x:Name="createFolderButton" IsChecked="{x:Null}" Background="LightGreen"  Margin="30,0,0,0" Checked="createFolderButton_Checked" />
+            </StackPanel>
+            <ListViewItem  x:Name="startSessionButton" Foreground="Black" MouseLeftButtonUp="startSessionButton_MouseLeftButtonUp" Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                    <materialDesign:PackIcon Kind="ArrowRightBoldCircleOutline" Width="25" Foreground="Black" Height="25" />
+                    <TextBlock Text="Zacznij sesję" FontSize="22" Foreground="Black" Margin="10,0,0,0"/>
+                </StackPanel>
+            </ListViewItem>
+        </ListView>
 
-       
     </Grid>
 </Page>
