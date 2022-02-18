@@ -22,7 +22,7 @@ namespace PhotoSorter
             try
             {
                 fileConnection = new StreamWriter(path, true);
-                fileConnection.WriteLine(collectionFileCompletePath); //zmienić sposób zapisu aby można to było wyekstraktować później
+                fileConnection.WriteLine(collectionFileCompletePath);
                 fileConnection.Close();
             }
             catch (Exception)
@@ -115,7 +115,6 @@ namespace PhotoSorter
                     Console.ReadKey();
                 }
             }
-
         }
 
     }

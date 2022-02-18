@@ -30,7 +30,7 @@ namespace PhotoSorter
 
             directoryPath = photosPath;
             newFolderName = collectionName;
-            collectionFileCompletePath = photosPath + "\\" + collectionName + ".txt"; // do zmiany
+            collectionFileCompletePath = photosPath + "\\" + collectionName + ".txt";
             createNewFolderStatus = AddNewCollection.createNewFolderChecked;
             currentOpenedFile = 1;
 
@@ -41,7 +41,7 @@ namespace PhotoSorter
 
         private void exitButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            CollectionsFile.WriteSelectedFilesListToFile(collectionFileCompletePath, selectedFilesList);
+            CollectionTextFile.WriteSelectedFilesListToFile(collectionFileCompletePath, selectedFilesList);
             Close();
             if (createNewFolderStatus) SelectedPhotosFolder.CreateSelectedPhotosFolder(collectionFileCompletePath, newFolderName);
         }
@@ -49,13 +49,13 @@ namespace PhotoSorter
         private void imageAddButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             AddFileToSelectedFilesList();
-            CollectionsFile.WriteSelectedFilesListToFile(collectionFileCompletePath, selectedFilesList);
+            CollectionTextFile.WriteSelectedFilesListToFile(collectionFileCompletePath, selectedFilesList);
         }
 
         private void removeImageButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             RemoveFileFromSelectedFilesList();
-            CollectionsFile.WriteSelectedFilesListToFile(collectionFileCompletePath, selectedFilesList);
+            CollectionTextFile.WriteSelectedFilesListToFile(collectionFileCompletePath, selectedFilesList);
         }
 
         private void AddFileToSelectedFilesList()
@@ -85,7 +85,6 @@ namespace PhotoSorter
         {
             try
             {
-                //można dodać opcje wyboru typu rozszerzenia
                 int i = 1;
                 List<string> temporaryList = Directory.GetFiles(directoryPath.ToString(), "*" + ".jpg").ToList();
 
@@ -139,9 +138,5 @@ namespace PhotoSorter
             Title = System.IO.Path.GetFileName(filesList.GetValueOrDefault(currentOpenedFile)).ToString();
         }
 
-
-        //long length = new System.IO.FileInfo(filesList.GetValueOrDefault(currentOpenedFile)).Length;
-        //collectionDataSize = length / 1048576;
-        //        MessageBox.Show(collectionDataSize.ToString(), "Uwaga");
     }
 }

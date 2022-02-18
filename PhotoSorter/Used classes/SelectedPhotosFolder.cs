@@ -25,7 +25,6 @@ namespace PhotoSorter
             CreateNewFolder(collectionFileCompletePath, newFolderName);
             CopyPhotosToNewFolder(collectionFileCompletePath);
 
-            //zabezpieczenie jak wcześniejszy etap nie wyjdzie?
         }
 
         /// <summary>
@@ -34,7 +33,7 @@ namespace PhotoSorter
         /// <param name="collectionFilePath"></param>
         public static void DeletePhotosCollectionFolder(string collectionFileCompletePath)
         {
-            string photosFolderDirectory = System.IO.Directory.GetParent(collectionFileCompletePath) + "\\" + System.IO.Path.GetFileNameWithoutExtension(collectionFileCompletePath);
+            string photosFolderDirectory = CollectionObject.setPhotosFolderPath(collectionFileCompletePath);
             if (System.IO.Directory.Exists(photosFolderDirectory)) System.IO.Directory.Delete(photosFolderDirectory, true);
         }
 
@@ -53,7 +52,6 @@ namespace PhotoSorter
                 string temporaryString = namesReader.ReadLine();
 
                 if (temporaryString == null) break;
-
                 selectedFilesList.Add(temporaryString);
             } while (true);
             namesReader.Close();

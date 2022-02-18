@@ -15,12 +15,12 @@ namespace PhotoSorter
     public partial class LibraryManagement : Page
     {
         List<string> collectionsList = new List<string>();
-        CollectionsStatistics collectionsStatictics = new();
+
+        CollectionsListCreator collectionsObjectsList = new();
 
         public LibraryManagement()
         {
             InitializeComponent();
-            //collectionsList = CollectionsLibraryFile.GetCollectionsList();
             DisplayCollectionsList();
 
         }
@@ -35,10 +35,11 @@ namespace PhotoSorter
             if (MessageBox.Show("Czy na pewno chcesz usunąć kolekcję?", "Uwaga!", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 string collectionFileCompletePath = GetPathFromSelectedCollection();
+                collectionsList = CollectionsLibraryFile.GetCollectionsList();
                 if (collectionFileCompletePath != null)
                 {
                     SelectedPhotosFolder.DeletePhotosCollectionFolder(collectionFileCompletePath);
-                    CollectionsFile.DeleteCollectionFile(collectionFileCompletePath);
+                    CollectionTextFile.DeleteCollectionFile(collectionFileCompletePath);
 
                     collectionsList.Remove(collectionFileCompletePath);
                     CollectionsLibraryFile.WriteCollectionListToLibraryFile(collectionsList);
@@ -57,10 +58,11 @@ namespace PhotoSorter
         private void DisplayCollectionsList()
         {
             collectionsLibraryListBox.Items.Clear();
-            collectionsList = CollectionsLibraryFile.GetCollectionsList();
-            foreach (var item in collectionsList)
+
+            collectionsObjectsList.UpdateAllCollectionsFromFile();
+            foreach (var collection in collectionsObjectsList.collectionsList)
             {
-                collectionsLibraryListBox.Items.Add(System.IO.Path.GetFileNameWithoutExtension(item));
+                collectionsLibraryListBox.Items.Add(collection.collectionName);
             }
         }
 
@@ -70,7 +72,7 @@ namespace PhotoSorter
         private void UpdatePhotosListBox()
         {
             collectionPhotoListBox.ItemsSource = null;
-            collectionPhotoListBox.ItemsSource = CollectionsFile.GetCollectionPhotosNamesList(GetPathFromSelectedCollection());
+            collectionPhotoListBox.ItemsSource = CollectionTextFile.GetCollectionPhotosNamesList(GetPathFromSelectedCollection());
 
             numberOfPhotosInCollection.Text = CollectionsStatistics.CountPhotosInCollection(GetPathFromSelectedCollection()).ToString();
             sizeOfPhotosCollection.Text = CollectionsStatistics.CountSizeOfPhotosInCollection(GetPathFromSelectedCollection()).ToString() + " [MB]";
@@ -84,9 +86,10 @@ namespace PhotoSorter
         private string GetPathFromSelectedCollection()
         {
             if (collectionsLibraryListBox.SelectedItem == null || collectionsLibraryListBox.SelectedItem.ToString() == "") return null;
-            foreach (var item in collectionsList)
+            collectionsObjectsList.UpdateAllCollectionsFromFile();
+            foreach (var collection in collectionsObjectsList.collectionsList)
             {
-                if (System.IO.Path.GetFileNameWithoutExtension(item) == collectionsLibraryListBox.SelectedItem.ToString()) return item;
+                if (collection.collectionName == collectionsLibraryListBox.SelectedItem.ToString()) return collection.collectionFileCompletePath;
             }
             return null;
         }
@@ -99,8 +102,9 @@ namespace PhotoSorter
             else if (CollectionsLibraryFile.CheckIfCollectionAlreadySaved(folderToAdd + ".txt")) return;
 
             string collectionFileCompletePath = System.IO.Directory.GetParent(folderToAdd).ToString() + "\\" + System.IO.Path.GetFileName(folderToAdd) + ".txt";
+
             CollectionsLibraryFile.AddCollectionToLibraryFile(collectionFileCompletePath);
-            CollectionsFile.WriteSelectedFilesListToFile(collectionFileCompletePath, GetPhotosList(folderToAdd));
+            CollectionTextFile.WriteSelectedFilesListToFile(collectionFileCompletePath, GetPhotosList(folderToAdd));
             DisplayCollectionsList();
             UpdatePhotosListBox();
 
@@ -110,7 +114,7 @@ namespace PhotoSorter
         private void DisplayStatusInfo(string message)
         {
             DispatcherTimer messageTimer = new DispatcherTimer();
-            messageTimer.Interval = TimeSpan.FromSeconds(2);
+            messageTimer.Interval = TimeSpan.FromSeconds(3);
             informationTextBlock.Text = message;
 
             messageTimer.Tick += (s, en) =>
@@ -141,11 +145,11 @@ namespace PhotoSorter
 
         private void createCollectionPhotosFolder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            string temporaryPathString = GetPathFromSelectedCollection();
-            bool folderExists = !System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(temporaryPathString) + "\\" + System.IO.Path.GetFileNameWithoutExtension(temporaryPathString));
-            if (folderExists)
+            string temporaryCollectionFileCompletePath = GetPathFromSelectedCollection();
+
+            if (!CollectionsStatistics.CheckIfPhotosFolderExists(temporaryCollectionFileCompletePath))
             {
-                SelectedPhotosFolder.CreateSelectedPhotosFolder(temporaryPathString, System.IO.Path.GetFileNameWithoutExtension(temporaryPathString));
+                SelectedPhotosFolder.CreateSelectedPhotosFolder(temporaryCollectionFileCompletePath, System.IO.Path.GetFileNameWithoutExtension(temporaryCollectionFileCompletePath));
                 DisplayStatusInfo("Utworzono folder ze zdjęciami.");
             }
             else DisplayStatusInfo("Folder ze zdjęciami kolekcji już istnieje.");
@@ -154,8 +158,8 @@ namespace PhotoSorter
         private void deleteCollectionPhotosFolder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             string temporaryCollectionFileCompletePath = GetPathFromSelectedCollection();
-            bool folderExists = System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(temporaryCollectionFileCompletePath) + "\\" + System.IO.Path.GetFileNameWithoutExtension(temporaryCollectionFileCompletePath));
-            if (folderExists && temporaryCollectionFileCompletePath != null)
+
+            if (CollectionsStatistics.CheckIfPhotosFolderExists(temporaryCollectionFileCompletePath) && temporaryCollectionFileCompletePath != null)
             {
                 SelectedPhotosFolder.DeletePhotosCollectionFolder(temporaryCollectionFileCompletePath);
                 DisplayStatusInfo("Usunięto folder ze zdjęciami.");

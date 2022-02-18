@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 
 
-
 namespace PhotoSorter
 {
     public class CollectionsStatistics
@@ -73,7 +72,7 @@ namespace PhotoSorter
         public static bool CheckIfPhotosFolderExists(string collectionFileCompletePath)
         {
             if (collectionFileCompletePath == null) return false;
-            string folderPath = System.IO.Directory.GetParent(collectionFileCompletePath).ToString() + "\\" + System.IO.Path.GetFileNameWithoutExtension(collectionFileCompletePath);
+            string folderPath = CollectionObject.setPhotosFolderPath(collectionFileCompletePath);
             return System.IO.Directory.Exists(folderPath);
         }
 

@@ -7,6 +7,9 @@ namespace PhotoSorter
     {
         public readonly List<CollectionObject> collectionsList = new List<CollectionObject>();
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void UpdateAllCollectionsFromFile()
         {
             List<string> collectionTemporaryList = CollectionsLibraryFile.GetCollectionsList();

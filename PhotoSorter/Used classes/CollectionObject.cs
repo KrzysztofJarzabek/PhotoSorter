@@ -22,6 +22,7 @@ namespace PhotoSorter
             photosFolderPath = setPhotosFolderPath(this.collectionFileCompletePath);
         }
 
+
         /// <summary>
         /// Returns as string the base collection path.
         /// </summary>
@@ -47,9 +48,10 @@ namespace PhotoSorter
         /// </summary>
         /// <param name="completeTextFilePath"></param>
         /// <returns></returns>
-        private string setPhotosFolderPath(string collectionFileCompletePath)
+        public static string setPhotosFolderPath(string collectionFileCompletePath)
         {
             return System.IO.Path.GetDirectoryName(collectionFileCompletePath) + "\\" + System.IO.Path.GetFileNameWithoutExtension(collectionFileCompletePath);
         }
+              
     }
 }

@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace PhotoSorter
 {
-    public static class CollectionsFile
+    public static class CollectionTextFile
     {
 
         /// <summary>
@@ -66,7 +66,6 @@ namespace PhotoSorter
         {
             System.IO.File.Delete(collectionFileCompletePath);
         }
-
-               
+                       
     }
 }
