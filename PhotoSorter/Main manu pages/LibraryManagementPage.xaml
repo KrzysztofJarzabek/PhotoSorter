@@ -66,13 +66,13 @@
                 <TextBlock Text="Fotografie w kolekcji:" VerticalAlignment="Center" FontSize="15" Foreground="Black" />
             </StackPanel>
             <ListBox x:Name="collectionPhotoListBox" Width="240" Height="200" Foreground="Black"/>
-            <ListViewItem x:Name="createCollectionPhotosFolder" Padding="1" Margin="0,10,0,0" MouseLeftButtonUp="createCollectionPhotosFolder_MouseLeftButtonUp" Foreground="Black" >
+            <ListViewItem x:Name="createCollectionFolderBtn" Padding="1" Margin="0,10,0,0" MouseLeftButtonUp="createCollectionFolderBtn_MouseLeftButtonUp" Foreground="Black" >
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="FolderAdd" Width="25" Height="25" Margin="10,18,18,18"/>
                     <TextBlock Text="Utwórz folder kolekcji" VerticalAlignment="Center" FontSize="15"/>
                 </StackPanel>
             </ListViewItem>
-            <ListViewItem x:Name="deleteCollectionPhotosFolder" Padding="1" MouseLeftButtonUp="deleteCollectionPhotosFolder_MouseLeftButtonUp" Foreground="Black" >
+            <ListViewItem x:Name="deleteCollectionFolderBtn" Padding="1" MouseLeftButtonUp="deleteCollectionFolderBtn_MouseLeftButtonUp" Foreground="Black" >
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="FolderRemove" Width="25" Height="25" Margin="10,18,18,18"/>
                     <TextBlock Text="Usuń folder kolekcji" VerticalAlignment="Center" FontSize="15"/>

@@ -114,7 +114,7 @@ namespace PhotoSorter
         private void DisplayStatusInfo(string message)
         {
             DispatcherTimer messageTimer = new DispatcherTimer();
-            messageTimer.Interval = TimeSpan.FromSeconds(3);
+            messageTimer.Interval = TimeSpan.FromSeconds(2);
             informationTextBlock.Text = message;
 
             messageTimer.Tick += (s, en) =>
@@ -143,7 +143,7 @@ namespace PhotoSorter
             return photosList;
         }
 
-        private void createCollectionPhotosFolder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void createCollectionFolderBtn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             string temporaryCollectionFileCompletePath = GetPathFromSelectedCollection();
 
@@ -151,11 +151,12 @@ namespace PhotoSorter
             {
                 SelectedPhotosFolder.CreateSelectedPhotosFolder(temporaryCollectionFileCompletePath, System.IO.Path.GetFileNameWithoutExtension(temporaryCollectionFileCompletePath));
                 DisplayStatusInfo("Utworzono folder ze zdjęciami.");
+                UpdatePhotosListBox();
             }
             else DisplayStatusInfo("Folder ze zdjęciami kolekcji już istnieje.");
         }
 
-        private void deleteCollectionPhotosFolder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void deleteCollectionFolderBtn_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             string temporaryCollectionFileCompletePath = GetPathFromSelectedCollection();
 
@@ -163,6 +164,7 @@ namespace PhotoSorter
             {
                 SelectedPhotosFolder.DeletePhotosCollectionFolder(temporaryCollectionFileCompletePath);
                 DisplayStatusInfo("Usunięto folder ze zdjęciami.");
+                UpdatePhotosListBox();
             }
             else DisplayStatusInfo("Folder ze zdjęciami nie istnieje.");
         }
