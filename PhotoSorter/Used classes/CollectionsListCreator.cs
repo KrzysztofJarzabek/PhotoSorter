@@ -13,6 +13,7 @@ namespace PhotoSorter
         public void UpdateAllCollectionsFromFile()
         {
             List<string> collectionTemporaryList = CollectionsLibraryFile.GetCollectionsList();
+            collectionsList.Clear();
 
             foreach (var collection in collectionTemporaryList)
             {
