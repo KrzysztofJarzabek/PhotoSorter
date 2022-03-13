@@ -85,7 +85,12 @@ namespace PhotoSorter
         /// <returns></returns>
         private string GetPathFromSelectedCollection()
         {
-            if (collectionsLibraryListBox.SelectedItem == null || collectionsLibraryListBox.SelectedItem.ToString() == "") return null;
+            if (collectionsLibraryListBox.SelectedItem == null || collectionsLibraryListBox.SelectedItem.ToString() == "")
+            {
+                DisplayStatusInfo("Nie wskazano kolekcji.");
+                return null;
+            }
+
             collectionsObjectsList.UpdateAllCollectionsFromFile();
             foreach (var collection in collectionsObjectsList.collectionsList)
             {
@@ -172,7 +177,7 @@ namespace PhotoSorter
                 DisplayStatusInfo("Usunięto folder ze zdjęciami.");
                 UpdatePhotosListBox();
             }
-            else DisplayStatusInfo("Folder ze zdjęciami nie istnieje.");
+            else if(temporaryCollectionFileCompletePath != null) DisplayStatusInfo("Folder ze zdjęciami nie istnieje.");
         }
 
     }
