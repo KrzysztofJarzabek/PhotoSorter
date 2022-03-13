@@ -9,13 +9,13 @@
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF" 
        
         fw:AcrylicWindow.AcrylicWindowStyle="None"
-        fw:AcrylicWindow.TintColor="DeepSkyBlue"
+        fw:AcrylicWindow.TintColor="#FF038CAA"
        
-        fw:AcrylicWindow.TintOpacity="0.2"
+        fw:AcrylicWindow.TintOpacity="0.3"
         Foreground="Black"
              
         fw:AcrylicWindow.Enabled="True"
-        Height="600" Width="1000"  WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Height="500" Width="1000"  WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="{x:Null}">
 
 
     <Grid>
@@ -56,7 +56,7 @@
         </StackPanel>
 
         <Grid Grid.Column="1" >
-            <Frame x:Name="tabsDisplayFrame" Height="600" VerticalAlignment="Top" NavigationUIVisibility="Hidden"/>
+            <Frame x:Name="tabsDisplayFrame" Height="500" VerticalAlignment="Top" NavigationUIVisibility="Hidden"/>
         </Grid>
 
 

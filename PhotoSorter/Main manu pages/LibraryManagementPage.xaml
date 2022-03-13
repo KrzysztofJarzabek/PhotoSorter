@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PhotoSorter"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="700"
+      d:DesignHeight="500" d:DesignWidth="700"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     
       FontFamily="Arial" FontSize="15" 
@@ -20,7 +20,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="15"/>
-            <RowDefinition Height="475"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Border Grid.Column="0" Grid.Row="0" Background="White" />
