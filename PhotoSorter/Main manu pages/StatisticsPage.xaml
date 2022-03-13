@@ -29,40 +29,40 @@
 
         <ListView Grid.Column="1" Grid.Row="1">
             <StackPanel>
-                <TextBlock Text="Ilość wszystkich kolekcji:" FontSize="16" Foreground="Black" />
-                <TextBox x:Name="quantityOfCollectionsTextBox" Foreground="Black" />
-                <Rectangle Width="250" Height="1" Fill="Black" />
+                <TextBlock Text="Ilość wszystkich kolekcji:" FontSize="16" Foreground="Black"/>
+                <TextBox x:Name="quantityOfCollectionsTextBox" Foreground="Black"/>
+                <Rectangle Width="250" Height="1" Fill="Black"/>
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="Rozmiar bazowych plików:" FontSize="16" Foreground="Black" />
-                <TextBox x:Name="sizeOfBaseFilesTextBox" Foreground="Black" />
-                <Rectangle Width="250" Height="1" Fill="Black" />
+                <TextBlock Text="Rozmiar bazowych plików:" FontSize="16" Foreground="Black"/>
+                <TextBox x:Name="sizeOfBaseFilesTextBox" Foreground="Black"/>
+                <Rectangle Width="250" Height="1" Fill="Black"/>
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="Rozmiar wszystkich kolekcji:" FontSize="16" Foreground="Black" />
-                <TextBox x:Name="sizeOfCollectionsTextBox" Foreground="Black" />
-                <Rectangle Width="250" Height="1" Fill="Black" />
+                <TextBlock Text="Rozmiar wszystkich kolekcji:" FontSize="16" Foreground="Black"/>
+                <TextBox x:Name="sizeOfCollectionsTextBox" Foreground="Black"/>
+                <Rectangle Width="250" Height="1" Fill="Black"/>
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="Ilość zdjęć w kolekcjach:" FontSize="16" Foreground="Black" />
-                <TextBox x:Name="quantityOfPhotosInCollectionsTextBox" Foreground="Black" />
-                <Rectangle Width="250" Height="1" Fill="Black" />
+                <TextBlock Text="Ilość zdjęć w kolekcjach:" FontSize="16" Foreground="Black"/>
+                <TextBox x:Name="quantityOfPhotosInCollectionsTextBox" Foreground="Black"/>
+                <Rectangle Width="250" Height="1" Fill="Black"/>
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="Kolekcje z utworzonymi folderami:" FontSize="16" Foreground="Black" />
-                <TextBox x:Name="quantityOfCollectionsWithFoldersTextBox" Foreground="Black" />
-                <Rectangle Width="250" Height="1" Fill="Black" />
+                <TextBlock Text="Kolekcje z utworzonymi folderami:" FontSize="16" Foreground="Black"/>
+                <TextBox x:Name="quantityOfCollectionsWithFoldersTextBox" Foreground="Black"/>
+                <Rectangle Width="250" Height="1" Fill="Black"/>
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="Zaoszczędzone miejsce na dysku:" FontSize="16"  Foreground="Black" />
-                <TextBox x:Name="savedSpaceOnDiskTextBox" Foreground="Black" />
-                <Rectangle Width="250" Height="1" Fill="Black" />
+                <TextBlock Text="Zaoszczędzone miejsce na dysku:" FontSize="16"  Foreground="Black"/>
+                <TextBox x:Name="savedSpaceOnDiskTextBox" Foreground="Black" FontWeight="Bold"/>
+                <Rectangle Width="250" Height="1" Fill="Black"/>
             </StackPanel>
 
             <ListViewItem x:Name="optimizeMemoryButton" MouseLeftButtonUp="optimizeMemoryButton_MouseLeftButtonUp" Foreground="Black">
                 <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="UploadNetworkOutline" Width="30" Height="30"/>
-                    <TextBlock Text="Usuń niepotrzebne foldery aby oszczędzić miejsce" Margin="5,3,0,0" TextWrapping="Wrap" FontSize="20"/>
+                    <materialDesign:PackIcon Kind="UploadNetworkOutline" Width="30" Height="30" Foreground="Black"/>
+                    <TextBlock x:Name="optimizeMemoryTextBox" Margin="5,3,0,0" TextWrapping="Wrap" FontSize="18"/>
                 </StackPanel>
             </ListViewItem>
         </ListView>

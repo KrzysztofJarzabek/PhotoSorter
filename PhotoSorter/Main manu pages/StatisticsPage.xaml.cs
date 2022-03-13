@@ -32,6 +32,17 @@ namespace PhotoSorter
             quantityOfPhotosInCollectionsTextBox.Text = collectionsStatistics.photosInCollectionCount.ToString();
             quantityOfCollectionsWithFoldersTextBox.Text = collectionsStatistics.collectionsWithFolderPresent.ToString();
             savedSpaceOnDiskTextBox.Text = collectionsStatistics.savedSpaceOnDisk.ToString() + " MB";
+
+            if (collectionsStatistics.collectionsWithFolderPresent != 0)
+            {
+                optimizeMemoryTextBox.Text = "Usuń niepotrzebne foldery aby oszczędzić miejsce.";
+                optimizeMemoryButton.Background = System.Windows.Media.Brushes.LightGreen;
+            }
+            else
+            {
+                optimizeMemoryTextBox.Text = "Wszystkie foldery zoptymalizowane.";
+                optimizeMemoryButton.Background = System.Windows.Media.Brushes.White;
+            }
         }
     }
 }

@@ -15,12 +15,12 @@
         Foreground="Black"
              
         fw:AcrylicWindow.Enabled="True"
-        Height="500" Width="1000"  WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="{x:Null}">
+        Height="500" Width="950"  WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="{x:Null}">
 
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
