@@ -10,7 +10,7 @@ namespace PhotoSorter
         static readonly string path = @"CollectionsLibrary.txt";
 
         /// <summary>
-        /// 
+        /// Adds created collection (.txt file) to library .txt file.
         /// </summary>
         /// <param name="collectionFileCompletePath"></param>
         public static void AddCollectionToLibraryFile(string collectionFileCompletePath)
@@ -39,6 +39,8 @@ namespace PhotoSorter
         /// <returns></returns>
         public static List<string> GetCollectionsList()
         {
+            CreateFileIfNotPresent();
+
             List<string> collectionsList = new List<string>();
             StreamReader streamReader = new StreamReader(path, true);
             while (true)

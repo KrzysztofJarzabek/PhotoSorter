@@ -8,7 +8,7 @@ namespace PhotoSorter
         public readonly List<CollectionObject> collectionsList = new List<CollectionObject>();
 
         /// <summary>
-        /// 
+        /// Creates or updates list of collection objects using CollectionsLibraryFile class.
         /// </summary>
         public void UpdateAllCollectionsFromFile()
         {

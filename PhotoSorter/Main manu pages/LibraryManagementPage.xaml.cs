@@ -97,8 +97,14 @@ namespace PhotoSorter
         private void AddExistingCollection_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             string folderToAdd = OpenFolderDialog.ChooseFileDirectory();
+            string fileExtention = System.IO.Path.GetExtension(folderToAdd);
 
             if (folderToAdd == null) return;
+            else if (fileExtention != ".jpg")
+            {
+                DisplayStatusInfo("Niewłaściwy format pliku.");
+                return;
+            }
             else if (CollectionsLibraryFile.CheckIfCollectionAlreadySaved(folderToAdd + ".txt")) return;
 
             string collectionFileCompletePath = System.IO.Directory.GetParent(folderToAdd).ToString() + "\\" + System.IO.Path.GetFileName(folderToAdd) + ".txt";
