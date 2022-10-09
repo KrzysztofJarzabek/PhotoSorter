@@ -1,7 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-
+using System.Windows.Threading;
 
 namespace PhotoSorter
 {
@@ -28,6 +29,7 @@ namespace PhotoSorter
             CollectionsLibraryFile.AddCollectionToLibraryFile(mainFolderLocalizationTextBox.Text + "\\" + collectionNameTextBox.Text + ".txt");
 
             photoViewerWindow.Show();
+            DisplayStatusInfo("Otwarto przeglądarkę plików.");
         }
 
         private void collectionNameTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -40,8 +42,22 @@ namespace PhotoSorter
             mainFolderLocalizationTextBox.Clear();
 
             string mainFolderLocalization = OpenFolderDialog.ChooseFileDirectory();
-            if (mainFolderLocalization == null) return;
+            if (mainFolderLocalization == null) { DisplayStatusInfo("Wskazano niepoprawny format pliku"); return; }
             mainFolderLocalizationTextBox.Text = mainFolderLocalization;
+        }
+
+        private void DisplayStatusInfo(string message)
+        {
+            DispatcherTimer messageTimer = new DispatcherTimer();
+            messageTimer.Interval = TimeSpan.FromSeconds(2);
+            informationTextBlock.Text = message;
+
+            messageTimer.Tick += (s, en) =>
+            {
+                informationTextBlock.Text = "";
+                messageTimer.Stop();
+            };
+            messageTimer.Start();
         }
     }
 }

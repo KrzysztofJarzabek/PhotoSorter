@@ -78,5 +78,6 @@
             </ListViewItem>
         </ListView>
 
+        <TextBlock Grid.Column="1" Grid.Row="6"  x:Name="informationTextBlock" Width="560" Foreground="White" FontFamily="Segoe UI Light" FontSize="15" VerticalAlignment="Center"/>
     </Grid>
 </Page>

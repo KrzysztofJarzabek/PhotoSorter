@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -42,8 +43,14 @@ namespace PhotoSorter
         private void exitButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             CollectionTextFile.WriteSelectedFilesListToFile(collectionFileCompletePath, selectedFilesList);
+
+            if (createNewFolderStatus)
+            {
+                SelectedPhotosFolder.CreateSelectedPhotosFolder(collectionFileCompletePath, newFolderName);
+                DisplayStatus("Utworzono folder zdjęć kolekcji.");
+//dodać czasówkę
+            }
             Close();
-            if (createNewFolderStatus) SelectedPhotosFolder.CreateSelectedPhotosFolder(collectionFileCompletePath, newFolderName);
         }
 
         private void imageAddButton_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
